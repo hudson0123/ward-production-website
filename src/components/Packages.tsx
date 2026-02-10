@@ -80,7 +80,7 @@ export default function Packages() {
           return (
             <div
               key={index}
-              className={`relative p-8 transition-all duration-500 card-hover ${colSpan} flex flex-col justify-between ${
+              className={`relative p-8 transition-all duration-500 ${colSpan} flex flex-col justify-between ${
                 pkg.featured
                   ? "bg-zinc-900 text-white border border-[#D97706] md:scale-105 z-10 shadow-xl"
                   : "bg-white border border-zinc-200 hover:border-zinc-300 shadow-sm"
@@ -120,10 +120,10 @@ export default function Packages() {
               </div>
               
               <div className={`pt-4 border-t ${pkg.featured ? 'border-zinc-800' : 'border-zinc-100'}`}>
-                <button className={`w-full py-3 text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${
+                <button className={`cursor-pointer border-black w-full py-3 text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${
                   pkg.featured 
                     ? 'bg-[#D97706] text-white hover:bg-[#B45309]' 
-                    : 'bg-zinc-50 text-zinc-900 hover:bg-zinc-900 hover:text-white border border-zinc-200 hover:border-zinc-900'
+                    : 'bg-zinc-900 text-white hover:bg-zinc-700 border border-zinc-200 hover:border-zinc-900'
                 }`}>
                   Select Tier
                 </button>

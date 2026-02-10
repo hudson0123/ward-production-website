@@ -39,7 +39,7 @@ const portfolioVideos: VideoItem[] = [
     title: "Minimalist Space", 
     tagline: "Short Form Social", 
     videoSrc: "/placeholder.mp4",
-    span: "col-span-12 md:col-span-7",
+    span: "col-span-12 md:col-span-7 my-auto",
     aspect: "aspect-[16/9]"
   },
 ];
@@ -72,7 +72,7 @@ export default function VideoGrid() {
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-12 gap-4 md:gap-8 items-start">
         {portfolioVideos.map((video, index) => (
           <div 
             key={video.id}

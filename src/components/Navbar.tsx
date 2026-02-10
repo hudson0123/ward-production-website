@@ -58,10 +58,10 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Image
-              src="/ward-creatives.png"
+              src="/ward.png"
               alt="Ward Creatives Logo"
-              width={40}
-              height={40}
+              width={100}
+              height={80}
               className="cursor-pointer"
               onClick={scrollToTop}
             />
@@ -152,7 +152,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
           ))}
           <Link
             href="/book"
-            className="btn-primary mt-6 text-center"
+            className="btn-primary mt-6 text-center text-lg"
           >
             Book Now
           </Link>

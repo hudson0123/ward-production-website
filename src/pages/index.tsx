@@ -5,6 +5,7 @@ import VideoGrid from "../components/VideoGrid";
 import ImageGallery from "../components/ImageGallery";
 import Packages from "../components/Packages";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
@@ -56,9 +57,9 @@ export default function Home() {
       <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Persistent Architectural Lines */}
-      <div className="arch-line-v left-[10%] opacity-50" />
-      <div className="arch-line-v left-[90%] opacity-50" />
-      <div className="arch-line-v left-1/2 -translate-x-1/2 opacity-30 hidden md:block" />
+      <div className="arch-line-v left-[10%] opacity-50 bottom-0" />
+      <div className="arch-line-v left-[90%] opacity-50 bottom-0" />
+      <div className="arch-line-v left-1/2 -translate-x-1/2 opacity-30 hidden md:block bottom-0" />
 
       {/* Hero Section */}
       <section
@@ -105,10 +106,10 @@ export default function Home() {
             is intentional, and every structure, space, or moment is designed to
             make an impact.
           </p>
-          <div className="md:hidden mt-8">
+          <div className="md:hidden mt-8 cursor-pointer">
             <Link
               href="/book"
-              className="btn-primary cursor-pointer"
+              className="btn-primary"
             >
               Book Now
             </Link>
@@ -224,9 +225,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="relative section bg-white overflow-hidden py-24 md:py-32">
-        {/* Giant Background Initial */}
-        <div className="bg-text-giant top-0 right-10 -rotate-12 opacity-[0.01]">K</div>
-        
+        {/* Giant Background Initial */}        
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-y-16 md:gap-12 items-center">
           <div 
             ref={addToRefs}
@@ -260,13 +259,17 @@ export default function Home() {
                <div className="absolute -bottom-6 -right-6 w-12 h-12 border-b border-r border-zinc-200" />
                
                <div 
-                 className="w-full aspect-[4/5] bg-zinc-100 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-700"
-                 style={{ borderRadius: '2px' }}
-               >
-                 <svg className="w-20 h-20 text-zinc-200" fill="currentColor" viewBox="0 0 24 24">
-                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                 </svg>
-               </div>
+                  className="w-full aspect-[4/5] bg-zinc-100 relative transition-all duration-700 overflow-hidden"
+                  style={{ borderRadius: '2px' }}
+                >
+                  <Image
+                    src="/keegan.png"
+                    alt="Keegan Ward"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
             </div>
           </div>
         </div>
@@ -327,13 +330,13 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-zinc-900 text-white py-10">
+      <footer className="relative bg-[#0A0A0A] text-white py-12 z-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-zinc-500 tracking-wider">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500">
               © {new Date().getFullYear()} Ward Creatives. All rights reserved.
             </p>
-            <p className="text-xs text-zinc-500 tracking-wider">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500">
               Athens, Georgia
             </p>
           </div>

@@ -10,12 +10,10 @@ interface GalleryImage {
 }
 
 const galleryImages: GalleryImage[] = [
-  { id: 1, src: "/ward-creatives.png", alt: "Modern Architecture 1", span: "col-span-12 md:col-span-8", aspect: "aspect-[16/10]" },
-  { id: 2, src: "/ward-creatives.png", alt: "Detail Shot", span: "col-span-12 md:col-span-4", aspect: "aspect-square" },
-  { id: 3, src: "/ward-creatives.png", alt: "Living Space", span: "col-span-12 md:col-span-4", aspect: "aspect-[3/4]" },
-  { id: 4, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-12 md:col-span-8", aspect: "aspect-[16/9]" },
-  { id: 5, src: "/ward-creatives.png", alt: "Kitchen Detail", span: "col-span-12 md:col-span-6", aspect: "aspect-square" },
-  { id: 6, src: "/ward-creatives.png", alt: "Poolside View", span: "col-span-12 md:col-span-6", aspect: "aspect-[4/3]" },
+  { id: 1, src: "/ward-creatives.png", alt: "Modern Architecture 1", span: "col-span-12 md:col-span-7", aspect: "aspect-[16/10]" },
+  { id: 2, src: "/ward-creatives.png", alt: "Detail Shot", span: "col-span-12 md:col-span-5 -my-10", aspect: "aspect-square" },
+  { id: 3, src: "/ward-creatives.png", alt: "Living Space", span: "col-span-12 md:col-span-5", aspect: "aspect-[3/4]" },
+  { id: 4, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-12 md:col-span-7", aspect: "aspect-[16/9]" },
 ];
 
 export default function ImageGallery() {
