@@ -1,8 +1,7 @@
 import { Outfit, DM_Sans } from "next/font/google";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
-import VideoGrid from "../components/VideoGrid";
-import ImageGallery from "../components/ImageGallery";
+import PortfolioGrid from "../components/PortfolioGrid";
 import Packages from "../components/Packages";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -77,8 +76,7 @@ export default function Home() {
           <source src="/placeholder.mp4" type="video/mp4" />
         </video>
         
-        {/* Overlay */}
-        <div className={`absolute inset-0 bg-black/50 transition-opacity duration-700 ${isHeroClear ? 'opacity-0' : 'opacity-100'}`} />
+        {/* No Overlay - Always Clear */}
         
         {/* Geometric Accents */}
         <div 
@@ -156,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio/Gallery Section */}
-      <section id="portfolio" className="relative section bg-white grid-pattern noise-overlay overflow-hidden">
+      <section id="portfolio" className="relative section bg-white grid-pattern overflow-hidden">
         
         <div className="relative z-10 max-w-7xl mx-auto">
           <div 
@@ -178,27 +176,16 @@ export default function Home() {
             </p>
           </div>
           
-          {/* Videos - Asymmetric handling will happen in VideoGrid */}
+          {/* Unified Portfolio Grid */}
           <div className="px-6">
-            <VideoGrid />
-          </div>
-
-          <div className="arch-line-h mt-32 relative">
-             <div className="absolute right-[10%] -top-4 text-[10px] uppercase tracking-widest text-zinc-300">Photography</div>
-          </div>
-
-          {/* Images - Asymmetric handling will happen in ImageGallery */}
-          <div className="mt-24 px-6">
-            <ImageGallery />
+            <PortfolioGrid />
           </div>
         </div>
       </section>
 
       {/* Packages Section */}
-      <section id="packages" className="relative section bg-zinc-50 noise-overlay overflow-hidden">
+      <section id="packages" className="relative section bg-zinc-50 overflow-hidden">
         {/* Giant Background Initial */}
-        <div className="bg-text-giant -bottom-20 -right-20 rotate-12 opacity-[0.03]">C</div>
-
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div 
             ref={addToRefs}
@@ -228,7 +215,6 @@ export default function Home() {
         {/* Giant Background Initial */}        
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-y-16 md:gap-12 items-center">
           <div 
-            ref={addToRefs}
             className="col-span-12 lg:col-span-5 order-2 lg:order-1"
           >
             <p className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 mb-6 flex items-center gap-4">
@@ -276,10 +262,9 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative section bg-zinc-50 noise-overlay overflow-hidden py-24 md:py-32">
+      <section id="contact" className="relative section bg-zinc-50 overflow-hidden py-24 md:py-32">
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-12 gap-y-20 lg:gap-12">
           <div 
-            ref={addToRefs}
             className="col-span-12 lg:col-span-6"
           >
             <p className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 mb-6 flex items-center gap-4">
@@ -336,8 +321,15 @@ export default function Home() {
             <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500">
               © {new Date().getFullYear()} Ward Creatives. All rights reserved.
             </p>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 flex items-center gap-2">
               Athens, Georgia
+              <Image
+                src="/bulldogs-logo.png"
+                alt="Georgia Bulldogs"
+                width={40}
+                height={40}
+                className="w-10 h-7 opacity-100 ml-2"
+              />
             </p>
           </div>
         </div>

@@ -15,7 +15,7 @@ const portfolioVideos: VideoItem[] = [
     title: "Modern Dwelling", 
     tagline: "Architectural Cinematography", 
     videoSrc: "/placeholder.mp4",
-    span: "col-span-12 md:col-span-8",
+    span: "col-span-12 md:col-span-6",
     aspect: "aspect-[16/9]"
   },
   { 
@@ -23,25 +23,42 @@ const portfolioVideos: VideoItem[] = [
     title: "Urban Loft", 
     tagline: "Interior Showcase", 
     videoSrc: "/placeholder.mp4",
-    span: "col-span-12 md:col-span-4",
-    aspect: "aspect-square"
+    span: "col-span-12 md:col-span-6",
+    aspect: "aspect-[16/9]"
   },
   { 
     id: 3, 
     title: "The Heritage", 
     tagline: "Drone & Exterior", 
     videoSrc: "/placeholder.mp4",
-    span: "col-span-12 md:col-span-5",
-    aspect: "aspect-[4/5]"
+    span: "col-span-6 md:col-span-3",
+    aspect: "aspect-[9/16] w-80"
   },
   { 
     id: 4, 
     title: "Minimalist Space", 
     tagline: "Short Form Social", 
     videoSrc: "/placeholder.mp4",
-    span: "col-span-12 md:col-span-7 my-auto",
-    aspect: "aspect-[16/9]"
+    span: "col-span-6 md:col-span-3",
+    aspect: "aspect-[9/16] w-80"
   },
+  { 
+    id: 5, 
+    title: "Minimalist Space", 
+    tagline: "Short Form Social", 
+    videoSrc: "/placeholder.mp4",
+    span: "col-span-6 md:col-span-3",
+    aspect: "aspect-[9/16] w-80"
+  },
+  { 
+    id: 6, 
+    title: "Minimalist Space", 
+    tagline: "Short Form Social", 
+    videoSrc: "/placeholder.mp4",
+    span: "col-span-6 md:col-span-3",
+    aspect: "aspect-[9/16] w-80"
+  },
+ 
 ];
 
 export default function VideoGrid() {
@@ -83,16 +100,15 @@ export default function VideoGrid() {
             <div className={`${video.aspect} bg-zinc-100 relative overflow-hidden`}>
               <video
                 ref={(el) => { videoRefs.current[video.id] = el; }}
-                className={`w-full h-full object-cover transition-all duration-1000 ${playingId === video.id ? 'grayscale-0' : 'grayscale group-hover:grayscale-0'}`}
+                className={`w-full h-full object-cover transition-all duration-1000`}
                 src={video.videoSrc}
                 playsInline
                 muted={playingId !== video.id}
                 onEnded={() => handleVideoEnd(video.id)}
               />
               
-              {/* Architectural Overlay */}
+              {/* Architectural Overlay - Removed for clarity */}
               <div className={`video-overlay absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${playingId === video.id ? "opacity-0" : "opacity-100"}`}>
-                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
                  <div className="relative w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                     <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                  </div>

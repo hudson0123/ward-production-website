@@ -10,10 +10,12 @@ interface GalleryImage {
 }
 
 const galleryImages: GalleryImage[] = [
-  { id: 1, src: "/ward-creatives.png", alt: "Modern Architecture 1", span: "col-span-12 md:col-span-7", aspect: "aspect-[16/10]" },
-  { id: 2, src: "/ward-creatives.png", alt: "Detail Shot", span: "col-span-12 md:col-span-5 -my-10", aspect: "aspect-square" },
-  { id: 3, src: "/ward-creatives.png", alt: "Living Space", span: "col-span-12 md:col-span-5", aspect: "aspect-[3/4]" },
-  { id: 4, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-12 md:col-span-7", aspect: "aspect-[16/9]" },
+  { id: 1, src: "/ward-creatives.png", alt: "Modern Architecture 1", span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
+  { id: 2, src: "/ward-creatives.png", alt: "Detail Shot", span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
+  { id: 3, src: "/ward-creatives.png", alt: "Living Space", span: "col-span-6 md:col-span-3", aspect: "aspect-[9/16]" },
+  { id: 4, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-6 md:col-span-3", aspect: "aspect-[9/16]" },
+  { id: 5, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-6 md:col-span-3", aspect: "aspect-[9/16]" },
+  { id: 6, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-6 md:col-span-3", aspect: "aspect-[9/16]" },
 ];
 
 export default function ImageGallery() {
@@ -67,7 +69,7 @@ export default function ImageGallery() {
                 src={image.src}
                 alt={image.alt}
                 fill
-                className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-90"
+                className="object-cover transition-all duration-700 group-hover:scale-105"
               />
               {/* Subtle architectural framing corner */}
               <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -78,10 +80,10 @@ export default function ImageGallery() {
       </div>
 
       {lightboxOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center glass-panel" onClick={closeLightbox}>
-          <div className="absolute inset-0 bg-black/90 pointer-events-none" />
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white/95 backdrop-blur-md" onClick={closeLightbox}>
+          <div className="absolute inset-0 bg-white/80 pointer-events-none" />
           
-          <button className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[110]" onClick={closeLightbox}>
+          <button className="absolute top-8 right-8 text-zinc-400 hover:text-zinc-900 transition-colors z-[110]" onClick={closeLightbox}>
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
 
