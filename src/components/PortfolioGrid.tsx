@@ -30,9 +30,18 @@ const portfolioItems: PortfolioItem[] = [
     type: 'video',
     title: "Modern Dwelling", 
     tagline: "Architectural Cinematography", 
-    src: "/placeholder.mp4",
+    src: "/placeholder-1.mp4",
     span: "col-span-12 md:col-span-3",
     aspect: "aspect-[9/16]"
+  },
+    { 
+    id: 3, 
+    type: 'video',
+    title: "Modern Dwelling", 
+    tagline: "Architectural Cinematography", 
+    src: "/placeholder-2.mp4",
+    span: "col-span-12 md:col-span-6",
+    aspect: "aspect-[16/9]"
   },
 ];
 

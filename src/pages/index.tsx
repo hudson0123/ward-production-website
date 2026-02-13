@@ -3,17 +3,48 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import PortfolioGrid from "../components/PortfolioGrid";
 import Packages from "../components/Packages";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import Image from "next/image";
+import emailjs from '@emailjs/browser';
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 
 export default function Home() {
   const revealRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const formRef = useRef<HTMLFormElement>(null);
   const [isHeroClear, setIsHeroClear] = useState(false);
   const [showMobileFAB, setShowMobileFAB] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [emailStatus, setEmailStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const sendEmail = (e: FormEvent) => {
+    e.preventDefault();
+    setIsSending(true);
+    setEmailStatus('idle');
+
+    if (formRef.current) {
+      emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY'
+      )
+      .then((result) => {
+          console.log(result.text);
+          setIsSending(false);
+          setEmailStatus('success');
+          if (formRef.current) formRef.current.reset();
+          // Reset status after 5 seconds
+          setTimeout(() => setEmailStatus('idle'), 5000);
+      }, (error) => {
+          console.log(error.text);
+          setIsSending(false);
+          setEmailStatus('error');
+      });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -295,20 +326,50 @@ export default function Home() {
             className="col-span-12 lg:col-span-6 bg-white p-6 sm:p-8 md:p-12 shadow-sm border border-zinc-100"
             style={{ borderRadius: '2px' }}
           >
-            <form>
+            <form ref={formRef} onSubmit={sendEmail}>
               <div className="mb-8">
                 <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-3">Name</label>
-                <input type="text" className="form-input" placeholder="Enter name" />
+                <input 
+                  type="text" 
+                  name="user_name"
+                  className="form-input" 
+                  placeholder="Enter name"
+                  required 
+                />
               </div>
               <div className="mb-8">
                 <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-3">Email</label>
-                <input type="email" className="form-input" placeholder="email@address.com" />
+                <input 
+                  type="email" 
+                  name="user_email"
+                  className="form-input" 
+                  placeholder="email@address.com" 
+                  required
+                />
               </div>
               <div className="mb-10">
                 <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-3">Project Details</label>
-                <textarea className="form-input resize-none" rows={4} placeholder="Describe the scope..." />
+                <textarea 
+                  name="message"
+                  className="form-input resize-none" 
+                  rows={4} 
+                  placeholder="Describe the scope..."
+                  required 
+                />
               </div>
-              <button type="submit" className="btn-primary w-full py-5 text-[11px] tracking-[0.2em] cursor-pointer">Initiate Request</button>
+              <button 
+                type="submit" 
+                className="btn-primary w-full py-5 text-[11px] tracking-[0.2em] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isSending}
+              >
+                {isSending ? "Sending..." : "Initiate Request"}
+              </button>
+              {emailStatus === 'success' && (
+                <p className="mt-4 text-green-600 text-[11px] uppercase tracking-widest text-center font-bold">Message Sent Successfully</p>
+              )}
+              {emailStatus === 'error' && (
+                <p className="mt-4 text-red-600 text-[11px] uppercase tracking-widest text-center font-bold">Failed to send message. Please try again.</p>
+              )}
             </form>
           </div>
         </div>

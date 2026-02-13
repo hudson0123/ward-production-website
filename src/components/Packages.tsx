@@ -6,6 +6,8 @@ interface Package {
   tagline: string;
   description: string;
   featured?: boolean;
+  mediaSrc?: string;
+  mediaType?: 'image' | 'video';
 }
 
 const packages: Package[] = [
@@ -14,18 +16,24 @@ const packages: Package[] = [
     tagline: "Essential listing coverage",
     description:
       "Professional ground photography designed to showcase your property's best features. Perfect for clean, MLS-ready images that make your listing shine without extras. Delivered fully edited for web and print.",
+    mediaSrc: "/ward-creatives.png",
+    mediaType: "image"
   },
   {
     name: "Elevation Package",
     tagline: "Adds perspective & scale",
     description:
       "Ground photography plus aerial drone imagery to capture the full scope of your property. Aerials highlight location, lot size, and surroundings, creating listings that stand out in the market.",
+    mediaSrc: "/ward-creatives.png",
+    mediaType: "image"
   },
   {
     name: "Horizontal Video",
     tagline: "Bring the property to life",
     description:
       "Cinematic video coverage, including ground and drone footage, that tells a story and brings flow to your listing. Edited for MLS and online presentation, it's the perfect way to give buyers an immersive property experience.",
+    mediaSrc: "/placeholder.mp4",
+    mediaType: "video"
   },
   {
     name: "Signature Package",
@@ -33,24 +41,32 @@ const packages: Package[] = [
     description:
       "The ultimate listing package: ground photography, drone photography, and both ground and aerial video. Fully edited and MLS-ready, ensuring every aspect of your property is presented with maximum impact.",
     featured: true,
+    mediaSrc: "/placeholder.mp4",
+    mediaType: "video"
   },
   {
     name: "Premium Package",
     tagline: "High-visibility marketing",
     description:
       "A full-scale marketing package designed to grab attention. Includes ground and drone photos, an MLS-style video tour, and two short-form vertical videos optimized for social media engagement. Perfect for listings that demand visibility and reach.",
+    mediaSrc: "/placeholder.mp4",
+    mediaType: "video"
   },
   {
     name: "Raw Land Package",
     tagline: "Visual clarity for land or underdeveloped properties",
     description:
       "Specialized coverage for land listings, focusing on scale, boundaries, and location. Includes drone photography and ground shots to define your property clearly, helping buyers see potential and value at a glance.",
+    mediaSrc: "/ward-creatives.png",
+    mediaType: "image"
   },
   {
     name: "Social Media Reels",
     tagline: "Show-stopping short-form video",
     description:
       "A cinematic 30–60 second reel crafted to capture attention instantly. Designed for social media, marketing campaigns, and high-impact listing promotion. Includes professional editing, music, and pacing optimized for maximum viewer retention.",
+    mediaSrc: "/placeholder.mp4",
+    mediaType: "video"
   },
 ];
 
@@ -80,14 +96,14 @@ export default function Packages() {
 
   const renderPackage = (pkg: Package) => (
     <div
-      className={`relative p-8 flex flex-col justify-between h-full transition-all duration-500 min-h-[480px] md:min-h-0 ${
+      className={`relative p-0 flex flex-col justify-between h-full transition-all duration-500 min-h-[420px] md:min-h-0 overflow-hidden ${
         pkg.featured
           ? "bg-zinc-900 text-white border border-[#D97706] shadow-xl"
           : "bg-white border border-zinc-200 shadow-sm"
       }`}
       style={{ borderRadius: '2px' }}
     >
-      <div>
+      <div className="p-7">
         {pkg.featured && (
           <div 
             className="absolute -top-3 left-8 bg-[#D97706] text-white text-[10px] font-bold px-4 py-1.5 uppercase tracking-widest z-20"
@@ -97,21 +113,21 @@ export default function Packages() {
           </div>
         )}
         <h3
-          className={`text-xl font-bold mb-2 ${
+          className={`text-lg font-bold mb-1.5 ${
             pkg.featured ? "text-white" : "text-zinc-900"
           }`}
         >
           {pkg.name}
         </h3>
         <p
-          className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-6 ${
+          className={`text-[9px] font-bold uppercase tracking-[0.2em] mb-4 ${
             pkg.featured ? "text-[#F59E0B]" : "text-[#D97706]"
           }`}
         >
           {pkg.tagline}
         </p>
         <p
-          className={`text-sm leading-relaxed mb-8 ${
+          className={`text-[13px] leading-relaxed mb-6 ${
             pkg.featured ? "text-zinc-400 font-light" : "text-zinc-500 font-normal"
           }`}
         >
@@ -119,16 +135,31 @@ export default function Packages() {
         </p>
       </div>
       
-      <div className={`pt-4 border-t ${pkg.featured ? 'border-zinc-800' : 'border-zinc-100'}`}>
-        <Link
-          href={`/book?package=${encodeURIComponent(pkg.name)}`}
-          className={`flex items-center justify-center cursor-pointer border-black w-full py-3 text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${
-            pkg.featured 
-              ? 'bg-[#D97706] text-white hover:bg-[#B45309]' 
-              : 'bg-zinc-900 text-white hover:bg-zinc-700 border border-zinc-200 hover:border-zinc-900'
-          }`}
-        >
-          Select Tier
+      <div className="mt-auto w-full aspect-video bg-zinc-100 relative group overflow-hidden">
+        <Link href={`/book?package=${encodeURIComponent(pkg.name)}`} className="block w-full h-full cursor-pointer">
+          {pkg.mediaType === 'video' ? (
+            <video
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src={pkg.mediaSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          ) : (
+            <img // Using img for simplicity in replacement block, normally Next Image preferred but cumbersome with unknown imports in block
+              src={pkg.mediaSrc} 
+              alt={pkg.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          )}
+          
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+             <span className="text-white text-[10px] uppercase tracking-widest font-bold border-b border-white pb-1">
+               Select Package
+             </span>
+          </div>
         </Link>
       </div>
     </div>
