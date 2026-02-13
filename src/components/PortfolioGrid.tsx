@@ -16,109 +16,23 @@ interface PortfolioItem {
 }
 
 const portfolioItems: PortfolioItem[] = [
-  // Videos
   { 
     id: 1, 
     type: 'video',
     title: "Modern Dwelling", 
     tagline: "Architectural Cinematography", 
     src: "/placeholder.mp4",
-    span: "col-span-12 md:col-span-6",
-    aspect: "aspect-[16/9]"
+    span: "col-span-12 md:col-span-3",
+    aspect: "aspect-[9/16]"
   },
   { 
     id: 2, 
     type: 'video',
-    title: "Urban Loft", 
-    tagline: "Interior Showcase", 
+    title: "Modern Dwelling", 
+    tagline: "Architectural Cinematography", 
     src: "/placeholder.mp4",
-    span: "col-span-12 md:col-span-6",
-    aspect: "aspect-[16/9]"
-  },
-  { 
-    id: 3, 
-    type: 'video',
-    title: "The Heritage", 
-    tagline: "Drone & Exterior", 
-    src: "/placeholder.mp4",
-    span: "col-span-6 md:col-span-3",
-    aspect: "aspect-[9/16] w-80"
-  },
-  { 
-    id: 4, 
-    type: 'video',
-    title: "Minimalist Space", 
-    tagline: "Short Form Social", 
-    src: "/placeholder.mp4",
-    span: "col-span-6 md:col-span-3",
-    aspect: "aspect-[9/16] w-80"
-  },
-  { 
-    id: 5, 
-    type: 'video',
-    title: "Minimalist Space", 
-    tagline: "Short Form Social", 
-    src: "/placeholder.mp4",
-    span: "col-span-6 md:col-span-3",
-    aspect: "aspect-[9/16] w-80"
-  },
-  { 
-    id: 6, 
-    type: 'video',
-    title: "Minimalist Space", 
-    tagline: "Short Form Social", 
-    src: "/placeholder.mp4",
-    span: "col-span-6 md:col-span-3",
-    aspect: "aspect-[9/16] w-80"
-  },
-  // Images
-  { 
-    id: 7, 
-    type: 'image',
-    src: "/ward-creatives.png", 
-    alt: "Modern Architecture 1", 
-    span: "col-span-12 md:col-span-6", 
-    aspect: "aspect-[16/9]" 
-  },
-  { 
-    id: 8, 
-    type: 'image',
-    src: "/ward-creatives.png", 
-    alt: "Detail Shot", 
-    span: "col-span-12 md:col-span-6", 
-    aspect: "aspect-[16/9]" 
-  },
-  { 
-    id: 9, 
-    type: 'image',
-    src: "/ward-creatives.png", 
-    alt: "Living Space", 
-    span: "col-span-6 md:col-span-3", 
-    aspect: "aspect-[9/16]" 
-  },
-  { 
-    id: 10, 
-    type: 'image',
-    src: "/ward-creatives.png", 
-    alt: "Exterior Dusk", 
-    span: "col-span-6 md:col-span-3", 
-    aspect: "aspect-[9/16]" 
-  },
-  { 
-    id: 11, 
-    type: 'image',
-    src: "/ward-creatives.png", 
-    alt: "Exterior Dusk", 
-    span: "col-span-6 md:col-span-3", 
-    aspect: "aspect-[9/16]" 
-  },
-  { 
-    id: 12, 
-    type: 'image',
-    src: "/ward-creatives.png", 
-    alt: "Exterior Dusk", 
-    span: "col-span-6 md:col-span-3", 
-    aspect: "aspect-[9/16]" 
+    span: "col-span-12 md:col-span-3",
+    aspect: "aspect-[9/16]"
   },
 ];
 
