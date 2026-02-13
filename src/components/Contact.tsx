@@ -1,10 +1,30 @@
-import React, { useRef, useState, FormEvent } from "react";
+import React, { useRef, useState, FormEvent, useEffect } from "react";
 import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isSending, setIsSending] = useState(false);
   const [emailStatus, setEmailStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-reveal");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
 
   const sendEmail = (e: FormEvent) => {
     e.preventDefault();
@@ -62,6 +82,7 @@ export default function Contact() {
         </div>
 
         <div 
+          ref={sectionRef}
           className="col-span-12 lg:col-span-6 bg-white p-6 sm:p-8 md:p-12 shadow-sm border border-zinc-100"
           style={{ borderRadius: '2px' }}
         >
