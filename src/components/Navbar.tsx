@@ -54,7 +54,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+        <div className="mx-auto flex justify-between items-center px-6 py-4">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Image
