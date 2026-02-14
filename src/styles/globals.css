@@ -389,7 +389,7 @@ nav,
 
 /* Text gradient accent */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #F59E0B 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #1F501D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
