@@ -33,10 +33,10 @@ export default function Contact() {
 
     if (formRef.current) {
       emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_b5upqw8',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_sw03weo',
         formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY'
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'MPZF1URUHxxJW4bJf'
       )
       .then((result) => {
           console.log(result.text);
