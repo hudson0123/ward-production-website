@@ -10,12 +10,25 @@ interface GalleryImage {
 }
 
 const galleryImages: GalleryImage[] = [
-  { id: 1, src: "/ward-creatives.png", alt: "Modern Architecture 1", span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
-  { id: 2, src: "/ward-creatives.png", alt: "Detail Shot", span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
-  { id: 3, src: "/ward-creatives.png", alt: "Living Space", span: "col-span-6 md:col-span-3", aspect: "aspect-[9/16]" },
-  { id: 4, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-6 md:col-span-3", aspect: "aspect-[9/16]" },
-  { id: 5, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-6 md:col-span-3", aspect: "aspect-[9/16]" },
-  { id: 6, src: "/ward-creatives.png", alt: "Exterior Dusk", span: "col-span-6 md:col-span-3", aspect: "aspect-[9/16]" },
+  { id: 1,  src: "/horizontal-images/DJI_20260217162409_0049_D.JPG", alt: "Aerial Shot 1",   span: "col-span-12 md:col-span-8", aspect: "aspect-[16/9]" },
+  { id: 2,  src: "/horizontal-images/DJI_20260217162515_0058_D.JPG", alt: "Aerial Shot 2",   span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 3,  src: "/horizontal-images/DJI_20260217182621_0144_D.JPG", alt: "Aerial Shot 3",   span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 4,  src: "/horizontal-images/DJI_20260217182922_0161_D.JPG", alt: "Aerial Shot 4",   span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 5,  src: "/horizontal-images/DJI_20260217182958_0164_D.JPG", alt: "Aerial Shot 5",   span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 6,  src: "/horizontal-images/DJI_20260217183106_0165_D.JPG", alt: "Aerial Shot 6",   span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
+  { id: 7,  src: "/horizontal-images/DSC00364.JPG",                  alt: "Photo 1",         span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
+  { id: 8,  src: "/horizontal-images/DSC00373.JPG",                  alt: "Photo 2",         span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 9,  src: "/horizontal-images/DSC00390 copy.JPG",             alt: "Photo 3",         span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 10, src: "/horizontal-images/DSC00397.JPG",                  alt: "Photo 4",         span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 11, src: "/horizontal-images/DSC00412.JPG",                  alt: "Photo 5",         span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
+  { id: 12, src: "/horizontal-images/DSC00415.JPG",                  alt: "Photo 6",         span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
+  { id: 13, src: "/horizontal-images/DSC00420.JPG",                  alt: "Photo 7",         span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 14, src: "/horizontal-images/DSC00424 copy.JPG",             alt: "Photo 8",         span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 15, src: "/horizontal-images/DSC00451.JPG",                  alt: "Photo 9",         span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 16, src: "/horizontal-images/DSC00511.JPG",                  alt: "Photo 10",        span: "col-span-12 md:col-span-8", aspect: "aspect-[16/9]" },
+  { id: 17, src: "/horizontal-images/DSC00517.JPG",                  alt: "Photo 11",        span: "col-span-12 md:col-span-4", aspect: "aspect-[16/9]" },
+  { id: 18, src: "/horizontal-images/DSC00522.JPG",                  alt: "Photo 12",        span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
+  { id: 19, src: "/horizontal-images/DSC00526.JPG",                  alt: "Photo 13",        span: "col-span-12 md:col-span-6", aspect: "aspect-[16/9]" },
 ];
 
 export default function ImageGallery() {

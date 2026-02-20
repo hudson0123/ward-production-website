@@ -1,7 +1,10 @@
 import React, { useRef, useState, FormEvent, useEffect } from "react";
 import emailjs from '@emailjs/browser';
+import Link from "next/link";
+import { siteConfig } from "../config/siteConfig";
 
 export default function Contact() {
+  const { contact } = siteConfig;
   const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isSending, setIsSending] = useState(false);
@@ -33,10 +36,10 @@ export default function Contact() {
 
     if (formRef.current) {
       emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_b5upqw8',
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_sw03weo',
+        contact.emailJS.serviceId,
+        contact.emailJS.templateId,
         formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'MPZF1URUHxxJW4bJf'
+        contact.emailJS.publicKey
       )
       .then((result) => {
           console.log(result.text);
@@ -60,23 +63,31 @@ export default function Contact() {
         >
           <p className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 mb-6 flex items-center gap-4">
             <span className="w-8 h-px bg-zinc-200" />
-            Collaboration
+            {contact.tagline}
           </p>
           <h2 className="text-5xl md:text-7xl font-bold text-zinc-900 mb-8 leading-tight tracking-tighter">
-            Start The <br />
-            <span className="text-zinc-400 italic mixed-case">Inquiry</span>
+            {contact.titlePrimary}<br />
+            <span className="text-zinc-400 leading-tight">{contact.titleSecondary}</span>
           </h2>
           <p className="text-zinc-500 max-w-sm mb-12 leading-relaxed text-base md:text-lg">
-            Have a project that requires a meticulous eye for detail? We are ready to bring it to life with precision and cinematic clarity.
+            {contact.description}
           </p>
           
           {/* Social Links - Architectural Row */}
           <div className="flex flex-col gap-6">
             <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Find Us</p>
             <div className="flex flex-wrap gap-x-8 gap-y-6">
-              <a href="https://instagram.com/wardcreatives" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#D97706] transition-colors uppercase text-[11px] tracking-widest font-bold border-b border-zinc-200 hover:border-[#D97706] pb-1">Instagram</a>
-              <a href="https://facebook.com/wardcreatives" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#D97706] transition-colors uppercase text-[11px] tracking-widest font-bold border-b border-zinc-200 hover:border-[#D97706] pb-1">Facebook</a>
-              <a href="https://tiktok.com/@wardcreatives" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#D97706] transition-colors uppercase text-[11px] tracking-widest font-bold border-b border-zinc-200 hover:border-[#D97706] pb-1">TikTok</a>
+              {contact.socialLinks.map((link) => (
+                <a 
+                  key={link.name}
+                  href={link.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-zinc-500 hover:text-[#D97706] transition-colors uppercase text-[11px] tracking-widest font-bold border-b border-zinc-200 hover:border-[#D97706] pb-1"
+                >
+                  {link.name}
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -107,7 +118,7 @@ export default function Contact() {
                 required
               />
             </div>
-            <div className="mb-10">
+            <div className="mt-2">
               <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-3">Project Details</label>
               <textarea 
                 name="message"
@@ -116,6 +127,14 @@ export default function Contact() {
                 placeholder="Describe the scope..."
                 required 
               />
+            </div>
+            <div className="m-5 text-center">
+              <p className="text-[10px] inline uppercase tracking-widest text-zinc-400 transition-colors font-bold">
+                Want to go ahead and book?
+              </p>
+              <Link href="/book" className="hover:underline text-[10px] ml-2 uppercase tracking-widest text-[#D97706] transition-colors font-bold">
+                Book Now
+              </Link>
             </div>
             <button 
               type="submit" 
