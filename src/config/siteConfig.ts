@@ -175,6 +175,40 @@ export const siteConfig = {
     }
   },
   
+  seo: {
+    defaultTitle: "Ward Creatives | Real Estate Photography & Videography in Athens, GA",
+    titleTemplate: "%s | Ward Creatives",
+    defaultDescription: "Premium architectural photography, cinematic property films, and high-impact social reels for real estate in Athens, GA and surrounding areas. Precision in every frame.",
+    baseUrl: "https://ward-creatives.com",
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: 'https://ward-creatives.com',
+      site_name: 'Ward Creatives',
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Ward Creatives Real Estate Media',
+        },
+      ],
+    },
+    twitter: {
+      handle: '@wardcreatives',
+      site: '@wardcreatives',
+      cardType: 'summary_large_image',
+    },
+    keywords: [
+      "Real Estate Photography Athens GA",
+      "Real Estate Videography Georgia",
+      "Architectural Photography",
+      "Property Films",
+      "Real Estate Reels",
+      "Athens Georgia Photographer",
+    ],
+  },
+  
   footer: {
     copyright: `© ${new Date().getFullYear()} Ward Creatives. All rights reserved.`,
   }

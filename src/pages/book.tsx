@@ -1,6 +1,7 @@
 import { Outfit, DM_Sans } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import SEO from "../components/SEO";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -27,6 +28,10 @@ export default function Book() {
 
   return (
     <div className={`${outfit.variable} ${dmSans.variable} font-sans min-h-screen bg-zinc-50 flex flex-col`}>
+      <SEO 
+        title="Book a Production" 
+        description="Secure your production window for photography, films, or social media reels. Initiate your project today."
+      />
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-zinc-100">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">

@@ -128,8 +128,8 @@ export default function Contact() {
                 required 
               />
             </div>
-            <div className="m-5 text-center">
-              <p className="text-[10px] inline uppercase tracking-widest text-zinc-400 transition-colors font-bold">
+            <div className="mt-8 text-center">
+              <p className="text-[10px] inline uppercase tracking-widest text-zinc-400 font-bold">
                 Want to go ahead and book?
               </p>
               <Link href="/book" className="hover:underline text-[10px] ml-2 uppercase tracking-widest text-[#D97706] transition-colors font-bold">

@@ -7,6 +7,8 @@ import PortfolioGallery from "../components/PortfolioGallery";
 import Packages from "../components/Packages";
 import Contact from "../components/Contact";
 import { siteConfig } from "../config/siteConfig";
+import SEO from "../components/SEO";
+import LocalBusinessSchema from "../components/LocalBusinessSchema";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
@@ -56,6 +58,8 @@ export default function Home() {
 
   return (
     <div className={`${outfit.variable} ${dmSans.variable} font-sans min-h-screen bg-white arch-grid-container`}>
+      <SEO />
+      <LocalBusinessSchema />
       <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Persistent Architectural Lines */}
