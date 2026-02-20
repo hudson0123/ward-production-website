@@ -91,15 +91,7 @@ export default function Home() {
           }} 
         />
 
-        {/* Geometric Accents */}
-        <div 
-          className={`absolute top-20 right-10 w-32 h-32 border border-white/10 transition-opacity duration-700 ${isHeroClear ? 'opacity-0' : 'opacity-100'}`}
-          style={{ transform: 'rotate(45deg)' }}
-        />
-        <div 
-          className={`absolute bottom-32 left-16 w-20 h-20 border border-white/10 transition-opacity duration-700 hidden md:block ${isHeroClear ? 'opacity-0' : 'opacity-100'}`}
-          style={{ transform: 'rotate(45deg)' }}
-        />
+
 
         {/* Hero Content - Left-aligned editorial layout */}
         <div className={`relative z-10 w-full max-w-7xl mx-auto px-6 pb-28 md:pb-32 transition-opacity duration-700 ${isHeroClear ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
