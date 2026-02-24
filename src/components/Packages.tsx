@@ -112,7 +112,7 @@ export default function Packages() {
   );
 
   return (
-    <div className="w-full px-4 md:px-12 relative group/section">
+    <div className="w-full md:px-12 relative group/section">
       {/* Navigation Arrows for Desktop */}
       <button 
         onClick={prevPackage}

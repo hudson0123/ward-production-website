@@ -200,9 +200,9 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div 
             ref={addToRefs}
-            className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20"
+            className="flex flex-col md:flex-row md:items-end justify-between gap-0 mb-20"
           >
-            <div className="max-w-2xl">
+            <div className="max-w-12xl">
               <p className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 mb-4 flex items-center gap-4">
                 <span className="w-8 h-px bg-zinc-200" />
                 {siteConfig.packages.tagline}
