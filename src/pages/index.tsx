@@ -74,7 +74,7 @@ export default function Home() {
       >
         {/* Video Background */}
         <video
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           autoPlay
           loop
           muted
