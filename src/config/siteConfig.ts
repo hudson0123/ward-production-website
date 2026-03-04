@@ -84,7 +84,6 @@ export const siteConfig = {
       { id: 1, src: "/stock-reel.mp4", title: "Modern Luxury Home Tour", views: "12.5k" },
       { id: 2, src: "/stock-reel2.mp4", title: "Waterfront Property Walkthrough", views: "9.8k" },
       { id: 3, src: "/stock-reel.mp4", title: "Inside a Luxury Mountain Estate", views: "7.2k" },
-      { id: 4, src: "/stock-reel2.mp4", title: "Urban Living Feature", views: "15k", onlyPortfolio: true },
     ],
   },
   
@@ -124,9 +123,9 @@ export const siteConfig = {
         mediaType: "video",
       },
       {
-        name: "Premium Package",
+        name: "Spotflight Packages",
         tagline: "High-visibility marketing",
-        description: "A full-scale marketing package designed to grab attention. Includes ground and drone photos, an MLS-style video tour, and two short-form vertical videos optimized for social media engagement. Perfect for listings that demand visibility and reach.",
+        description: "A full-scale marketing package designed to grab attention. Includes ground and drone photos, an MLS-style video tour, and one short-form vertical videos optimized for social media engagement. Perfect for listings that demand visibility and reach.",
         mediaSrc: "/placeholder.mp4",
         mediaType: "video",
       },
@@ -187,7 +186,7 @@ export const siteConfig = {
       site_name: 'Ward Creatives',
       images: [
         {
-          url: '/og-image.jpg',
+          url: '/ward.png',
           width: 1200,
           height: 630,
           alt: 'Ward Creatives Real Estate Media',
