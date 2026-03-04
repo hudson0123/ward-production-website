@@ -1,3 +1,24 @@
+export interface PortfolioItem {
+  id: number;
+  src: string;
+  onlyPortfolio?: boolean;
+}
+
+export interface PhotographyItem extends PortfolioItem {
+  alt: string;
+}
+
+export interface FilmItem extends PortfolioItem {
+  title: string;
+  tagline: string;
+  address: string;
+}
+
+export interface ReelItem extends PortfolioItem {
+  title: string;
+  views: string;
+}
+
 export const siteConfig = {
   global: {
     name: "Ward Creatives",
@@ -53,7 +74,7 @@ export const siteConfig = {
       { id: 17, src: "/horizontal-images/DSC00517.JPG",                  alt: "Photo 11", onlyPortfolio: true },
       { id: 18, src: "/horizontal-images/DSC00522.JPG",                  alt: "Photo 12", onlyPortfolio: true },
       { id: 19, src: "/horizontal-images/DSC00526.JPG",                  alt: "Photo 13", onlyPortfolio: true },
-    ],
+    ] as PhotographyItem[],
     
     films: [
       {
@@ -78,13 +99,13 @@ export const siteConfig = {
         address: "New York, NY",
         onlyPortfolio: true,
       },
-    ],
+    ] as FilmItem[],
     
     reels: [
       { id: 1, src: "/stock-reel.mp4", title: "Modern Luxury Home Tour", views: "12.5k" },
       { id: 2, src: "/stock-reel2.mp4", title: "Waterfront Property Walkthrough", views: "9.8k" },
       { id: 3, src: "/stock-reel.mp4", title: "Inside a Luxury Mountain Estate", views: "7.2k" },
-    ],
+    ] as ReelItem[],
   },
   
   packages: {
