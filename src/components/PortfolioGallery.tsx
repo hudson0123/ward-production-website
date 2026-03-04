@@ -12,7 +12,7 @@ export default function PortfolioGallery() {
   const homeReels = portfolio.reels.filter(item => !item.onlyPortfolio);
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-6 font-sans">
+    <div className="w-full max-w-4xl mx-auto px-1 md:px-6 font-sans">
       <PhotographyCarousel items={homePhotography} />
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -41,7 +41,7 @@ function RealEstateFilms({ films }: { films: any[] }) {
 
   return (
     <section className="mb-8">
-      <p className="text-[10px] uppercase tracking-[0.35em] text-zinc-400 font-semibold mb-6">
+      <p className="text-[10px] uppercase tracking-[0.35em] text-zinc-400 font-semibold mb-6 px-4 md:px-0">
         {siteConfig.portfolio.filmsTitle}
       </p>
       <div className="relative group/container" style={{ borderRadius: "3px" }}>

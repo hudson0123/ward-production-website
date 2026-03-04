@@ -13,7 +13,7 @@ function PhotographyCarousel({ items }: { items: any[] }) {
 
   return (
     <section className="w-full mb-12 group">
-      <p className="text-[10px] uppercase tracking-[0.35em] text-zinc-400 font-semibold mb-6">
+      <p className="text-[10px] uppercase tracking-[0.35em] text-zinc-400 font-semibold mb-6 px-4 md:px-0">
         {siteConfig.portfolio.photographyTitle}
       </p>
       <div className="relative w-full overflow-hidden" style={{ borderRadius: "3px" }}>
@@ -61,7 +61,7 @@ function PhotographyCarousel({ items }: { items: any[] }) {
       </div>
 
       {/* Caption & Counter / Indicators */}
-      <div className="flex flex-col md:flex-row justify-between items-center mt-8 gap-6 md:gap-4 px-2">
+      <div className="flex flex-col md:flex-row justify-between items-center mt-8 gap-6 md:gap-4 px-4 md:px-2">
         <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-[0.2em] order-3 md:order-1 text-center md:text-left">
           {items[index] ? items[index].alt : ""}
         </p>

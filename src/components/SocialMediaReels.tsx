@@ -4,7 +4,7 @@ import { siteConfig } from "../config/siteConfig";
 function SocialMediaReels({ reels }: { reels: any[] }) {
   return (
     <section className="mb-8">
-      <p className="text-[10px] uppercase tracking-[0.35em] text-zinc-400 font-semibold mb-6">
+      <p className="text-[10px] uppercase tracking-[0.35em] text-zinc-400 font-semibold mb-6 px-4 md:px-0">
         {siteConfig.portfolio.reelsTitle}
       </p>
 

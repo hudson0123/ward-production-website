@@ -204,7 +204,7 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="px-6">
+          <div className="px-2 md:px-6">
             <PortfolioGallery />
           </div>
         </div>
