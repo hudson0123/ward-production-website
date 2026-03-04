@@ -50,7 +50,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-sm border-b border-zinc-100"
+            ? "bg-black/50"
             : "bg-transparent"
         }`}
       >
@@ -58,10 +58,10 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Image
-              src="/ward.png"
+              src="/ward-logo-updated.png"
               alt="Ward Creatives Logo"
-              width={100}
-              height={80}
+              width={130}
+              height={130}
               className="cursor-pointer"
               onClick={scrollToTop}
             />
@@ -75,7 +75,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
                 onClick={() => handleNavClick(section.id)}
                 className={`cursor-pointer text-sm font-medium tracking-wide transition-colors link-underline ${
                   isScrolled
-                    ? "text-zinc-700 hover:text-zinc-900"
+                    ? "text-white hover:text-zinc-900"
                     : "text-white/90 hover:text-white"
                 }`}
               >
@@ -100,17 +100,17 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
           >
             <span
               className={`hamburger-line block w-6 h-0.5 ${
-                isScrolled || isMenuOpen ? "bg-zinc-800" : "bg-white"
+                isMenuOpen ? "bg-zinc-800" : "bg-white"
               }`}
             />
             <span
               className={`hamburger-line block w-6 h-0.5 ${
-                isScrolled || isMenuOpen ? "bg-zinc-800" : "bg-white"
+                isMenuOpen ? "bg-zinc-800" : "bg-white"
               }`}
             />
             <span
               className={`hamburger-line block w-6 h-0.5 ${
-                isScrolled || isMenuOpen ? "bg-zinc-800" : "bg-white"
+                 isMenuOpen ? "bg-zinc-800" : "bg-white"
               }`}
             />
           </button>

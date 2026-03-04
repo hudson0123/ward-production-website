@@ -15,11 +15,20 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 
 export default function Home() {
   const revealRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const [isHeroClear, setIsHeroClear] = useState(false);
   const [showMobileFAB, setShowMobileFAB] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
+    // Force autoplay on mobile by explicitly setting muted and playing
+    if (heroVideoRef.current) {
+      heroVideoRef.current.muted = true;
+      heroVideoRef.current.play().catch((err) => {
+        console.warn("Hero video autoplay failed:", err);
+      });
+    }
+
     const handleScroll = () => {
       // Show FAB after 200px and only on mobile
       setShowMobileFAB(window.scrollY > 200);
@@ -74,11 +83,17 @@ export default function Home() {
       >
         {/* Video Background */}
         <video
+          ref={heroVideoRef}
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           autoPlay
           loop
           muted
           playsInline
+          onLoadedMetadata={() => {
+            if (heroVideoRef.current) {
+              heroVideoRef.current.muted = true;
+            }
+          }}
         >
           <source src={siteConfig.hero.videoSrc} type="video/mp4" />
         </video>

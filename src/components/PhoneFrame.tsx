@@ -2,12 +2,21 @@
 // ─────────────────────────────────────────────
 // PHONE FRAME (for reels)
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // ─────────────────────────────────────────────
 function PhoneFrame({ reel, isCenter, isMiddle }: { reel: any, isCenter: boolean, isMiddle?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (isMiddle && videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((err) => {
+        console.warn("PhoneFrame video autoplay failed:", err);
+      });
+    }
+  }, [isMiddle]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -49,6 +58,11 @@ function PhoneFrame({ reel, isCenter, isMiddle }: { reel: any, isCenter: boolean
             muted
             loop
             autoPlay={isMiddle}
+            onLoadedMetadata={() => {
+              if (videoRef.current) {
+                videoRef.current.muted = true;
+              }
+            }}
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
           />
