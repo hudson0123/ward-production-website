@@ -5,10 +5,14 @@
 import { useRef, useState, useEffect } from "react";
 import { siteConfig } from "../config/siteConfig";
 
+const getYouTubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
 function RealEstateFilms({ films }: { films: any[] }) {
   const [currentFilm, setCurrentFilm] = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const prev = () => {
     setCurrentFilm((i) => (i === 0 ? films.length - 1 : i - 1));
@@ -17,27 +21,8 @@ function RealEstateFilms({ films }: { films: any[] }) {
     setCurrentFilm((i) => (i === films.length - 1 ? 0 : i + 1));
   };
 
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (playing) {
-      videoRef.current.pause();
-      setPlaying(false);
-    } else {
-      videoRef.current.play();
-      setPlaying(true);
-    }
-  };
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {
-        // Autoplay might be blocked by browser until user interaction
-      });
-    }
-  }, [currentFilm]);
-
   const film = films[currentFilm];
+  const videoId = getYouTubeId(film.src);
 
   return (
     <section className="mb-8">
@@ -45,22 +30,20 @@ function RealEstateFilms({ films }: { films: any[] }) {
         {siteConfig.portfolio.filmsTitle}
       </p>
       <div className="relative group/container" style={{ borderRadius: "3px" }}>
-        <div className="aspect-video bg-zinc-900 relative overflow-hidden" onClick={togglePlay}>
-          <video
-            ref={videoRef}
-            key={film.src}
-            src={film.src}
-            className="w-full h-full object-cover"
-            playsInline
-            muted
-            loop
-            autoPlay
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-            onEnded={() => setPlaying(false)}
-          />
-          {/* Dark overlay when paused */}
-          {!playing && <div className="absolute inset-0 bg-black/30" />}
+        <div className="aspect-video bg-zinc-900 relative overflow-hidden">
+          {videoId ? (
+            <iframe
+              key={videoId}
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0`}
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              title={film.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-zinc-500 text-xs">Video unavailable</div>
+          )}
 
           {/* Navigation Buttons Inside */}
           <button
@@ -81,18 +64,6 @@ function RealEstateFilms({ films }: { films: any[] }) {
             </svg>
           </button>
 
-          {/* Play button */}
-          <div
-            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
-              playing ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}
-          >
-            <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/25 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <svg className="w-6 h-6 text-white ml-0.4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
 
 
         </div>

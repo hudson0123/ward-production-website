@@ -5,6 +5,7 @@ import SEO from "../components/SEO";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
@@ -16,6 +17,7 @@ export default function Book() {
   const router = useRouter();
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (router.isReady) {
@@ -32,26 +34,7 @@ export default function Book() {
         title="Book a Production" 
         description="Secure your production window for photography, films, or social media reels. Initiate your project today."
       />
-      {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-zinc-100">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/ward.png"
-              alt="Ward Creatives Logo"
-              width={100}
-              height={80}
-              className="cursor-pointer"
-            />
-          </Link>
-          <Link 
-            href="/"
-            className="text-[11px] uppercase tracking-widest font-bold text-zinc-400 hover:text-[#D97706] transition-all flex items-center gap-2 group"
-          >
-            <span className="group-hover:-translate-x-1 transition-transform">←</span> Return Home
-          </Link>
-        </div>
-      </header>
+      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Main Content */}
       <main className="pt-24 pb-16 px-6 flex-grow">

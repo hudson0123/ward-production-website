@@ -74,19 +74,31 @@ export const siteConfig = {
       { id: 17, src: "/horizontal-images/DSC00517.JPG",                  alt: "Photo 11", onlyPortfolio: true },
       { id: 18, src: "/horizontal-images/DSC00522.JPG",                  alt: "Photo 12", onlyPortfolio: true },
       { id: 19, src: "/horizontal-images/DSC00526.JPG",                  alt: "Photo 13", onlyPortfolio: true },
+      { id: 20, src: "/DJI_20260228100516_0247_D.jpg",                   alt: "Aerial Property Shot" },
+      { id: 21, src: "/DJI_20260228134210_0301_D.jpg",                   alt: "Aerial View" },
+      { id: 22, src: "/DJI_20260228134341_0313_D.jpg",                   alt: "Drone Perspective" },
+      { id: 23, src: "/DJI_20260302141445_0278_D.jpg",                   alt: "Aerial Landscape" },
+      { id: 24, src: "/DSC00618.jpg",                                    alt: "Interior Detail" },
+      { id: 25, src: "/DSC00621.jpg",                                    alt: "Living Space" },
+      { id: 26, src: "/DSC00770-ok.jpg",                                 alt: "Architectural Exterior" },
+      { id: 27, src: "/DSC00779-ok.jpg",                                 alt: "Exterior Dusk" },
+      { id: 28, src: "/DSC00791.jpg",                                    alt: "Property Feature" },
+      { id: 29, src: "/DSC00818.jpg",                                    alt: "Interior Lighting" },
+      { id: 30, src: "/DSC00890.jpg",                                    alt: "Modern Interior" },
+      { id: 31, src: "/DSC01085.jpg",                                    alt: "Exterior Presentation" },
     ] as PhotographyItem[],
     
     films: [
       {
         id: 1,
-        src: "/placeholder.mp4",
+        src: "https://www.youtube.com/watch?v=diLqmjW2cqI",
         title: "Modern Home Tour",
         tagline: "Drone | Cinematic Walkthrough",
         address: "123 Main St, Los Angeles, CA",
       },
       {
         id: 2,
-        src: "/placeholder.mp4",
+        src: "https://www.youtube.com/watch?v=Qk4FZ9Jl0j4",
         title: "789 Ocean View Drive",
         tagline: "Architectural Cinematography",
         address: "Malibu, CA",
@@ -102,9 +114,9 @@ export const siteConfig = {
     ] as FilmItem[],
     
     reels: [
-      { id: 1, src: "/stock-reel.mp4", title: "Modern Luxury Home Tour", views: "12.5k" },
-      { id: 2, src: "/stock-reel2.mp4", title: "Waterfront Property Walkthrough", views: "9.8k" },
-      { id: 3, src: "/stock-reel.mp4", title: "Inside a Luxury Mountain Estate", views: "7.2k" },
+      { id: 1, src: "https://www.youtube.com/shorts/3XxTnfmcY6k", title: "Modern Luxury Home Tour", views: "12.5k" },
+      { id: 2, src: "https://www.youtube.com/shorts/qjf5i0S2Y14", title: "Waterfront Property Walkthrough", views: "9.8k" },
+      { id: 3, src: "https://www.youtube.com/shorts/JfQbKi7SIPI", title: "Inside a Luxury Mountain Estate", views: "7.2k" },
     ] as ReelItem[],
   },
   

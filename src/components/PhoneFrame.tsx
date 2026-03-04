@@ -4,37 +4,21 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const getYouTubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
 // ─────────────────────────────────────────────
 function PhoneFrame({ reel, isCenter, isMiddle }: { reel: any, isCenter: boolean, isMiddle?: boolean }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    if (isMiddle && videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => {
-        console.warn("PhoneFrame video autoplay failed:", err);
-      });
-    }
-  }, [isMiddle]);
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (playing) {
-      videoRef.current.pause();
-      setPlaying(false);
-    } else {
-      videoRef.current.play();
-      setPlaying(true);
-    }
-  };
+  const videoId = getYouTubeId(reel.src);
 
   return (
     <div
       className={`relative flex-shrink-0 w-full transition-all duration-500 ${
         isMiddle ? "scale-110 z-10" : "scale-100 opacity-100"
       }`}
-      onClick={togglePlay}
     >
       {/* Phone shell */}
       <div
@@ -49,48 +33,21 @@ function PhoneFrame({ reel, isCenter, isMiddle }: { reel: any, isCenter: boolean
         <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-14 h-[14px] bg-zinc-950 rounded-full z-20" />
 
         {/* Screen */}
-        <div className="relative overflow-hidden rounded-[12px] md:rounded-[16px] bg-zinc-900" style={{ aspectRatio: "9/19.5" }}>
-          <video
-            ref={videoRef}
-            src={reel.src}
-            className="w-full h-full object-cover"
-            playsInline
-            muted
-            loop
-            autoPlay={isMiddle}
-            onLoadedMetadata={() => {
-              if (videoRef.current) {
-                videoRef.current.muted = true;
-              }
-            }}
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-          />
-          {!playing && <div className="absolute inset-0 bg-black/20" />}
-
-          {/* Play button */}
-          {!playing && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="cursor-pointer w-9 h-9 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </div>
+        <div className="relative overflow-hidden rounded-[12px] md:rounded-[16px] bg-zinc-900" style={{ aspectRatio: "9/18.5" }}>
+          {videoId ? (
+            <iframe
+              key={videoId}
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1`}
+              className="absolute inset-0 w-full h-full pointer-events-none scale-[1.18] object-cover"
+              title={reel.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-zinc-500 text-[8px]">Video unavailable</div>
           )}
 
-          {/* Reel label at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
-            <p className="text-white text-[8px] font-semibold leading-tight line-clamp-2">{reel.title}</p>
-            {reel.views && (
-              <div className="flex items-center gap-1 mt-1">
-                <svg className="w-2.5 h-2.5 text-white/60" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-                <span className="text-white/60 text-[7px]">{reel.views}</span>
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </div>

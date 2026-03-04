@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -18,31 +19,41 @@ function scrollToSection(id: string) {
   }
 }
 
-function scrollToTop() {
-  if (typeof window !== "undefined") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-}
-
 interface NavbarProps {
   isMenuOpen: boolean;
   setIsMenuOpen: (open: boolean) => void;
 }
 
 export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
+  const isHomePage = router.pathname === "/";
+  const [isScrolled, setIsScrolled] = useState(!isHomePage);
 
   useEffect(() => {
+    if (!isHomePage) return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   const handleNavClick = (id: string) => {
-    scrollToSection(id);
+    if (isHomePage) {
+      scrollToSection(id);
+    } else {
+      router.push(`/#${id}`);
+    }
     setIsMenuOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    if (isHomePage) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+    }
   };
 
   return (
@@ -63,7 +74,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
               width={130}
               height={130}
               className="cursor-pointer"
-              onClick={scrollToTop}
+              onClick={handleLogoClick}
             />
           </div>
 
@@ -75,7 +86,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
                 onClick={() => handleNavClick(section.id)}
                 className={`cursor-pointer text-sm font-medium tracking-wide transition-colors link-underline ${
                   isScrolled
-                    ? "text-white hover:text-zinc-900"
+                    ? "text-white"
                     : "text-white/90 hover:text-white"
                 }`}
               >

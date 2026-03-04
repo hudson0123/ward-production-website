@@ -13,6 +13,12 @@ import LocalBusinessSchema from "../components/LocalBusinessSchema";
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 
+const getYouTubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
 export default function Home() {
   const revealRefs = useRef<(HTMLDivElement | null)[]>([]);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
