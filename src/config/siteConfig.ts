@@ -205,6 +205,13 @@ export const siteConfig = {
       "Property Films",
       "Real Estate Reels",
       "Athens Georgia Photographer",
+      "Keegan Ward",
+      "Ward Creatives",
+      "Drone Photography",
+      "Real Estate Marketing",
+      "Social Media Marketing",
+      "Real Estate Videography",
+      "Real Estate Photography",
     ],
   },
   
