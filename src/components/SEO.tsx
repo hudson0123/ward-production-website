@@ -47,6 +47,10 @@ const SEO = ({ title, description, image, article }: SEOProps) => {
       {seoImage && <meta name="twitter:image" content={seoImage} />}
       
       <link rel="canonical" href={seoUrl} />
+      
+      {/* Favicons */}
+      <link rel="icon" href={siteConfig.global.favicon} />
+      <link rel="apple-touch-icon" href={siteConfig.global.logo} />
     </Head>
   );
 };

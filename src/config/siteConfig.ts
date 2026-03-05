@@ -23,8 +23,9 @@ export const siteConfig = {
   global: {
     name: "Ward Creatives",
     location: "Athens, Georgia",
-    logo: "/bulldogs-logo.png",
-    logoAlt: "Georgia Bulldogs",
+    logo: "/ward-logo-updated.png",
+    logoAlt: "Ward Creatives",
+    favicon: "/favicon.ico",
     theme: {
       accent: "#D97706",
       accentHover: "#B45309",
