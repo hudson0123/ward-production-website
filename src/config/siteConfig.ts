@@ -94,7 +94,7 @@ export const siteConfig = {
         src: "https://www.youtube.com/watch?v=diLqmjW2cqI",
         title: "Modern Home Tour",
         tagline: "Drone | Cinematic Walkthrough",
-        address: "123 Main St, Los Angeles, CA",
+        address: "",
       },
       {
         id: 2,
