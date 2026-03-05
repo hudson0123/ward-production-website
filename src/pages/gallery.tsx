@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,9 +11,27 @@ import SEO from "../components/SEO";
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 
+const getYouTubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
 export default function Gallery() {
   const { portfolio, global } = siteConfig;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="bg-zinc-50 min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-zinc-200 border-t-[#D97706] rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className={`${outfit.variable} ${dmSans.variable} font-body bg-zinc-50 min-h-screen pb-32`}>
@@ -77,23 +95,37 @@ export default function Gallery() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {portfolio.films.map((film) => (
-              <div key={film.id} className="group">
-                <div className="aspect-video bg-zinc-900 relative overflow-hidden mb-6" style={{ borderRadius: '3px' }}>
-                  <video 
-                    src={film.src} 
-                    className="w-full h-full object-cover" 
-                    controls 
-                    playsInline
-                  />
+            {portfolio.films.map((film) => {
+              const videoId = getYouTubeId(film.src);
+              return (
+                <div key={film.id} className="group">
+                  <div className="aspect-video bg-zinc-900 relative overflow-hidden mb-6" style={{ borderRadius: '3px' }}>
+                    {videoId ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
+                        className="absolute inset-0 w-full h-full"
+                        title={film.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <video 
+                        src={film.src} 
+                        className="w-full h-full object-cover" 
+                        controls 
+                        playsInline
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-zinc-900 mb-1">{film.title}</h3>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#D97706] font-bold mb-2">{film.tagline}</p>
+                    <p className="text-sm text-zinc-500">{film.address}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-zinc-900 mb-1">{film.title}</h3>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#D97706] font-bold mb-2">{film.tagline}</p>
-                  <p className="text-sm text-zinc-500">{film.address}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 

@@ -103,14 +103,6 @@ export const siteConfig = {
         tagline: "Architectural Cinematography",
         address: "Malibu, CA",
       },
-      {
-        id: 3,
-        src: "/placeholder.mp4",
-        title: "Experimental Loft",
-        tagline: "Interior Design Feature",
-        address: "New York, NY",
-        onlyPortfolio: true,
-      },
     ] as FilmItem[],
     
     reels: [

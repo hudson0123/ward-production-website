@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { siteConfig } from "../config/siteConfig";
 
+const getYouTubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
 interface Package {
   name: string;
   tagline: string;
@@ -16,8 +22,10 @@ export default function Packages() {
   const signatureIndex = packages.list.findIndex(p => p.name === "Signature Package");
   const [currentIndex, setCurrentIndex] = useState(signatureIndex !== -1 ? signatureIndex : 0);
   const [visibleCards, setVisibleCards] = useState(1);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const updateVisibleCards = () => {
       if (window.innerWidth < 768) {
         setVisibleCards(1);
@@ -41,75 +49,88 @@ export default function Packages() {
     setCurrentIndex((prev: number) => (prev - 1 + packages.list.length) % packages.list.length);
   };
 
-  const renderPackage = (pkg: Package) => (
-    <div
-      className={`relative p-0 flex flex-col justify-between h-full transition-all duration-500 min-h-[420px] md:min-h-[480px] ${
-        pkg.featured
-          ? "bg-zinc-900 text-white border border-[#D97706] shadow-xl"
-          : "bg-white border border-zinc-200 shadow-sm"
-      }`}
-      style={{ borderRadius: '2px' }}
-    >
-      <div className="p-7">
-        {pkg.featured && (
-          <div 
-            className="absolute -top-3 left-8 bg-[#D97706] text-white text-[10px] font-bold px-4 py-1.5 uppercase tracking-widest z-20"
-            style={{ borderRadius: '1px' }}
-          >
-            Signature Selection
-          </div>
-        )}
-        <h3
-          className={`text-lg font-bold mb-1.5 ${
-            pkg.featured ? "text-white" : "text-zinc-900"
-          }`}
-        >
-          {pkg.name}
-        </h3>
-        <p
-          className={`text-[9px] font-bold uppercase tracking-[0.2em] mb-4 ${
-            pkg.featured ? "text-[#F59E0B]" : "text-[#D97706]"
-          }`}
-        >
-          {pkg.tagline}
-        </p>
-        <p
-          className={`text-[13px] leading-relaxed ${
-            pkg.featured ? "text-zinc-400 font-bold " : "text-zinc-500 font-normal"
-          }`}
-        >
-          {pkg.description}
-        </p>
-      </div>
-      
-      <div className="mt-auto w-full aspect-video bg-zinc-100 relative group overflow-hidden" style={{ borderBottomLeftRadius: '2px', borderBottomRightRadius: '2px' }}>
-        <Link href="/book" className="block w-full h-full cursor-pointer">
-          {pkg.mediaType === 'video' ? (
-            <video
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src={pkg.mediaSrc}
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-          ) : (
-            <img 
-              src={pkg.mediaSrc} 
-              alt={pkg.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+  const renderPackage = (pkg: Package) => {
+    const videoId = getYouTubeId(pkg.mediaSrc);
+    
+    return (
+      <div
+        className={`relative p-0 flex flex-col justify-between h-full transition-all duration-500 min-h-[420px] md:min-h-[480px] ${
+          pkg.featured
+            ? "bg-zinc-900 text-white border border-[#D97706] shadow-xl"
+            : "bg-white border border-zinc-200 shadow-sm"
+        }`}
+        style={{ borderRadius: '2px' }}
+      >
+        <div className="p-7">
+          {pkg.featured && (
+            <div 
+              className="absolute -top-3 left-8 bg-[#D97706] text-white text-[10px] font-bold px-4 py-1.5 uppercase tracking-widest z-20"
+              style={{ borderRadius: '1px' }}
+            >
+              Signature Selection
+            </div>
           )}
-          
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-             <span className="text-white text-[10px] uppercase tracking-widest font-bold border-b border-white pb-1">
-               Book Now
-             </span>
-          </div>
-        </Link>
+          <h3
+            className={`text-lg font-bold mb-1.5 ${
+              pkg.featured ? "text-white" : "text-zinc-900"
+            }`}
+          >
+            {pkg.name}
+          </h3>
+          <p
+            className={`text-[9px] font-bold uppercase tracking-[0.2em] mb-4 ${
+              pkg.featured ? "text-[#F59E0B]" : "text-[#D97706]"
+            }`}
+          >
+            {pkg.tagline}
+          </p>
+          <p
+            className={`text-[13px] leading-relaxed ${
+              pkg.featured ? "text-zinc-400 font-bold " : "text-zinc-500 font-normal"
+            }`}
+          >
+            {pkg.description}
+          </p>
+        </div>
+        
+        <div className="mt-auto w-full aspect-video bg-zinc-100 relative group overflow-hidden" style={{ borderBottomLeftRadius: '2px', borderBottomRightRadius: '2px' }}>
+          <Link href="/book" className="block w-full h-full cursor-pointer">
+            {pkg.mediaType === 'video' ? (
+              videoId ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&enablejsapi=1`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                />
+              ) : (
+                <video
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  src={pkg.mediaSrc}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
+              )
+            ) : (
+              <img 
+                src={pkg.mediaSrc} 
+                alt={pkg.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            )}
+            
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+               <span className="text-white text-[10px] uppercase tracking-widest font-bold border-b border-white pb-1">
+                 Book Now
+               </span>
+            </div>
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="w-full md:px-12 relative group/section">

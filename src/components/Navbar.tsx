@@ -61,7 +61,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-black/50"
+            ? "bg-black/90"
             : "bg-transparent"
         }`}
       >

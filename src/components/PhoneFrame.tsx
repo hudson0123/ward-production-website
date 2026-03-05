@@ -12,7 +12,22 @@ const getYouTubeId = (url: string) => {
 
 // ─────────────────────────────────────────────
 function PhoneFrame({ reel, isCenter, isMiddle }: { reel: any, isCenter: boolean, isMiddle?: boolean }) {
+  const [mounted, setMounted] = useState(false);
   const videoId = getYouTubeId(reel.src);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="relative flex-shrink-0 w-full" style={{ aspectRatio: "9/18.5" }}>
+        <div className="relative bg-zinc-950 rounded-[12px] md:rounded-[18px] p-[2px] shadow-2xl">
+          <div className="relative overflow-hidden rounded-[12px] md:rounded-[16px] bg-zinc-900 h-full w-full" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

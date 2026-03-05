@@ -12,7 +12,20 @@ const getYouTubeId = (url: string) => {
 };
 
 function RealEstateFilms({ films }: { films: any[] }) {
+  const [mounted, setMounted] = useState(false);
   const [currentFilm, setCurrentFilm] = useState(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section className="mb-8">
+        <div className="aspect-video bg-zinc-900 rounded-[3px]" />
+      </section>
+    );
+  }
 
   const prev = () => {
     setCurrentFilm((i) => (i === 0 ? films.length - 1 : i - 1));
