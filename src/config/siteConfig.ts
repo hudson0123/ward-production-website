@@ -114,9 +114,9 @@ export const siteConfig = {
     ] as FilmItem[],
     
     reels: [
-      { id: 1, src: "https://www.youtube.com/shorts/3XxTnfmcY6k", title: "Modern Luxury Home Tour", views: "12.5k" },
-      { id: 2, src: "https://www.youtube.com/shorts/qjf5i0S2Y14", title: "Waterfront Property Walkthrough", views: "9.8k" },
-      { id: 3, src: "https://www.youtube.com/shorts/JfQbKi7SIPI", title: "Inside a Luxury Mountain Estate", views: "7.2k" },
+      { id: 1, src: "https://www.youtube.com/shorts/3XxTnfmcY6k", title: "Modern Luxury Home Tour", views: "" },
+      { id: 2, src: "https://www.youtube.com/shorts/qjf5i0S2Y14", title: "Waterfront Property Walkthrough", views: "" },
+      { id: 3, src: "https://www.youtube.com/shorts/JfQbKi7SIPI", title: "Inside a Luxury Mountain Estate", views: "" },
     ] as ReelItem[],
   },
   
