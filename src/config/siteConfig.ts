@@ -25,6 +25,14 @@ export const siteConfig = {
     location: "Athens, Georgia",
     logo: "/bulldogs-logo.png",
     logoAlt: "Georgia Bulldogs",
+    theme: {
+      accent: "#D97706",
+      accentHover: "#B45309",
+      accentRgb: "217, 119, 6",
+      secondaryAccent: "#D97706",
+      secondaryAccentHover: "#B45309",
+      secondaryAccentRgb: "217, 119, 6",
+    }
   },
   
   hero: {
@@ -136,23 +144,23 @@ export const siteConfig = {
         name: "Horizontal Video",
         tagline: "Bring the property to life",
         description: "Cinematic video coverage, including ground and drone footage, that tells a story and brings flow to your listing. Edited for MLS and online presentation, it's the perfect way to give buyers an immersive property experience.",
-        mediaSrc: "/placeholder.mp4",
-        mediaType: "video",
+        mediaSrc: "/DSC00618.jpg",
+        mediaType: "image",
       },
       {
         name: "Signature Package",
         tagline: "Complete visual coverage",
         description: "The ultimate listing package: ground photography, drone photography, and both ground and aerial video. Fully edited and MLS-ready, ensuring every aspect of your property is presented with maximum impact.",
         featured: true,
-        mediaSrc: "/placeholder.mp4",
-        mediaType: "video",
+        mediaSrc: "/DSC00770-ok.jpg",
+        mediaType: "image",
       },
       {
-        name: "Spotflight Packages",
+        name: "Spotlight Packages",
         tagline: "High-visibility marketing",
         description: "A full-scale marketing package designed to grab attention. Includes ground and drone photos, an MLS-style video tour, and one short-form vertical videos optimized for social media engagement. Perfect for listings that demand visibility and reach.",
-        mediaSrc: "/placeholder.mp4",
-        mediaType: "video",
+        mediaSrc: "/DSC00890.jpg",
+        mediaType: "image",
       },
       {
         name: "Raw Land Package",
@@ -165,8 +173,8 @@ export const siteConfig = {
         name: "Social Media Reels",
         tagline: "Show-stopping short-form video",
         description: "A cinematic 30–60 second reel crafted to capture attention instantly. Designed for social media, marketing campaigns, and high-impact listing promotion. Includes professional editing, music, and pacing optimized for maximum viewer retention.",
-        mediaSrc: "/placeholder.mp4",
-        mediaType: "video",
+        mediaSrc: "/DSC01085.jpg",
+        mediaType: "image",
       },
     ],
     addOns: [

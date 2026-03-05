@@ -67,7 +67,7 @@ export default function Contact() {
           </p>
           <h2 className="text-5xl md:text-7xl font-bold text-zinc-900 mb-8 leading-tight tracking-tighter">
             {contact.titlePrimary}<br />
-            <span className="text-zinc-400 leading-tight">{contact.titleSecondary}</span>
+            <span className="text-secondary-accent leading-tight">{siteConfig.contact.titleSecondary}</span>
           </h2>
           <p className="text-zinc-500 max-w-sm mb-12 leading-relaxed text-base md:text-lg">
             {contact.description}
@@ -83,7 +83,7 @@ export default function Contact() {
                   href={link.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-zinc-500 hover:text-[#D97706] transition-colors uppercase text-[11px] tracking-widest font-bold border-b border-zinc-200 hover:border-[#D97706] pb-1"
+                  className="text-zinc-500 hover:text-accent transition-colors uppercase text-[11px] tracking-widest font-bold border-b border-zinc-200 hover:border-accent pb-1"
                 >
                   {link.name}
                 </a>
@@ -132,7 +132,7 @@ export default function Contact() {
               <p className="text-[10px] inline uppercase tracking-widest text-zinc-400 font-bold">
                 Want to go ahead and book?
               </p>
-              <Link href="/book" className="hover:underline text-[10px] ml-2 uppercase tracking-widest text-[#D97706] transition-colors font-bold">
+              <Link href="/book" className="hover:underline text-[10px] ml-2 uppercase tracking-widest text-accent transition-colors font-bold">
                 Book Now
               </Link>
             </div>

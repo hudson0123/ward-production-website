@@ -28,7 +28,7 @@ export default function Gallery() {
   if (!mounted) {
     return (
       <div className="bg-zinc-50 min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-zinc-200 border-t-[#D97706] rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-zinc-200 border-t-accent rounded-full animate-spin" />
       </div>
     );
   }
@@ -50,7 +50,7 @@ export default function Gallery() {
             The Full Archive
           </p>
           <h1 className="text-6xl md:text-8xl font-bold text-zinc-900 mb-8 leading-tight tracking-tighter font-heading">
-                All <span className="text-[#D97706]">Work</span>
+                All <span className="text-accent">Work</span>
           </h1>
           <p className="text-zinc-500 max-w-xl mx-auto leading-relaxed text-lg">
             An exhaustive collection of our architectural photography, cinematic property tours, and high-impact social media content.
@@ -120,7 +120,7 @@ export default function Gallery() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-zinc-900 mb-1">{film.title}</h3>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#D97706] font-bold mb-2">{film.tagline}</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold mb-2">{film.tagline}</p>
                     <p className="text-sm text-zinc-500">{film.address}</p>
                   </div>
                 </div>
@@ -153,10 +153,10 @@ export default function Gallery() {
 
         {/* Call to Action */}
         <footer className="mt-48 text-center ">
-            <h2 className="text-4xl md:text-6xl font-bold text-zinc-900 mb-12 tracking-tighter">Ready to showcase <br /><span className="text-[#D97706]">your listing?</span></h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-zinc-900 mb-12 tracking-tighter">Ready to showcase <br /><span className="text-accent">your listing?</span></h2>
             <Link 
               href="/book" 
-              className="inline-block hover:bg-black text-white px-12 py-5 text-[10px] uppercase tracking-[0.4em] font-bold bg-[#D97706] transition-all duration-300"
+              className="inline-block hover:bg-black text-white px-12 py-5 text-[10px] uppercase tracking-[0.4em] font-bold bg-accent transition-all duration-300"
               style={{ borderRadius: '1px' }}
             >
               Book Your Production

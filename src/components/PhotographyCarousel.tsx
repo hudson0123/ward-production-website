@@ -74,7 +74,7 @@ function PhotographyCarousel({ items }: { items: any[] }) {
                         key={i}
                         onClick={() => setIndex(i)}
                         className={`h-1 rounded-full transition-all duration-300 ${
-                            index === i ? "w-6 bg-[#D97706]" : "w-1.5 bg-zinc-200"
+                            index === i ? "w-6 bg-accent" : "w-1.5 bg-zinc-200"
                         }`}
                         aria-label={`Go to slide ${i + 1}`}
                     />

@@ -129,7 +129,7 @@ export default function Home() {
           >
             {siteConfig.hero.titlePrimary}
             <br />
-            <span className="text-[#D97706]" style={{ textShadow: '0 2px 20px rgba(217,119,6,0.3), 0 4px 40px rgba(0,0,0,0.3)' }}>
+            <span className="text-secondary-accent" style={{ textShadow: `0 2px 20px rgba(var(--secondary-rgb), 0.3), 0 4px 40px rgba(0,0,0,0.3)` }}>
               {siteConfig.hero.titleSecondary}
             </span>
           </h1>
@@ -202,7 +202,7 @@ export default function Home() {
               </p>
               <h2 className="text-5xl md:text-7xl font-bold text-zinc-900 mb-6 leading-tight tracking-tighter">
                 {siteConfig.portfolio.titlePrimary} <br />
-                <span className="text-[#D97706] leading-tight">{siteConfig.portfolio.titleSecondary}</span>
+                <span className="text-accent leading-tight">{siteConfig.portfolio.titleSecondary}</span>
               </h2>
             </div>
             <p className="text-zinc-500 max-w-sm text-sm leading-relaxed mb-2 md:mb-6">
@@ -230,7 +230,7 @@ export default function Home() {
               </p>
               <h2 className="text-5xl md:text-7xl font-bold text-zinc-900 leading-tight tracking-tighter">
                 {siteConfig.packages.titlePrimary} <br />
-                <span className="text-zinc-400">{siteConfig.packages.titleSecondary}</span>
+                <span className="text-secondary-accent">{siteConfig.packages.titleSecondary}</span>
               </h2>
             </div>
             <div className="md:w-px md:h-24 bg-zinc-200 hidden md:block" />
@@ -252,7 +252,7 @@ export default function Home() {
             </p>
             <h2 className="text-5xl md:text-7xl font-bold text-zinc-900 mb-2 leading-tight tracking-tighter">
               {siteConfig.about.titlePrimary} <br />
-              <span className="text-[#D97706] leading-tight">{siteConfig.about.titleSecondary}</span>
+              <span className="text-accent leading-tight">{siteConfig.about.titleSecondary}</span>
             </h2>
             <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-10 pb-1 border-b border-zinc-100 inline-block">
               {siteConfig.about.subtitle}
@@ -310,7 +310,7 @@ export default function Home() {
 
       <Link
         href="/book"
-        className={`fixed bottom-6 right-6 z-[60] md:hidden px-6 py-4 bg-[#D97706] text-white text-[12px] font-bold uppercase tracking-[0.2em] shadow-2xl transition-all duration-500 flex items-center gap-3 ${
+        className={`fixed bottom-6 right-6 z-[60] md:hidden px-6 py-4 bg-accent text-white text-[12px] font-bold uppercase tracking-[0.2em] shadow-2xl transition-all duration-500 flex items-center gap-3 ${
           showMobileFAB && !isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
         } cursor-pointer`}
         style={{ borderRadius: '2px' }}

@@ -42,14 +42,14 @@ export default function Book() {
           {/* Page Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-4 tracking-tighter">
-              Project <span className="text-[#D97706] italic mixed-case">Initiation</span>
+              Project <span className="text-accent italic mixed-case">Initiation</span>
             </h1>
             
             {selectedPackage ? (
               <div className="inline-flex flex-col items-center bg-white border border-zinc-200 py-3 px-8 shadow-sm relative group overflow-hidden" style={{ borderRadius: '2px' }}>
                  {/* Internal architectural accents */}
-                <div className="absolute top-0 left-0 w-1 h-full bg-[#D97706]" />
-                <div className="absolute top-0 right-0 w-1 h-full bg-zinc-100 group-hover:bg-[#D97706]/20 transition-colors" />
+                <div className="absolute top-0 left-0 w-1 h-full bg-accent" />
+                <div className="absolute top-0 right-0 w-1 h-full bg-zinc-100 group-hover:bg-accent/20 transition-colors" />
 
                 <div className="flex items-center gap-3">
                   <p className="text-zinc-500 text-[9px] uppercase tracking-[0.2em] font-bold">Selection:</p>
@@ -85,7 +85,7 @@ export default function Book() {
             {/* Loading Overlay */}
             {isLoading && (
               <div className="absolute inset-0 z-10 bg-white flex flex-col items-center justify-center gap-3">
-                <div className="w-6 h-6 border-2 border-zinc-100 border-t-[#D97706] rounded-full animate-spin" />
+                <div className="w-6 h-6 border-2 border-zinc-100 border-t-accent rounded-full animate-spin" />
                 <p className="text-[9px] uppercase tracking-[0.3em] text-zinc-400 font-bold animate-pulse">Loading Portal...</p>
               </div>
             )}
@@ -103,7 +103,7 @@ export default function Book() {
           <div className="mt-5 text-center pt-8">
             <p className="text-[12px] text-zinc-400 uppercase tracking-widest font-medium">
               Complex Request?{"  "}
-              <Link href="/#contact" className="text-[12px] text-[#D97706] hover:underline font-bold underline-offset-4 tracking-normal">
+              <Link href="/#contact" className="text-[12px] text-accent hover:underline font-bold underline-offset-4 tracking-normal">
                 Direct Inquiry
               </Link>
             </p>

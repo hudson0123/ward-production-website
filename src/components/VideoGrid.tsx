@@ -116,8 +116,8 @@ export default function VideoGrid() {
 
               {/* Dynamic Labeling */}
               <div className={`absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 ${playingId === video.id ? 'hidden' : 'block'}`}>
-                 <div className="bg-white/90 backdrop-blur-md p-6 max-w-xs border-l-2 border-[#D97706]">
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-[#D97706] mb-2 font-bold">{video.tagline}</p>
+                 <div className="bg-white/90 backdrop-blur-md p-6 max-w-xs border-l-2 border-accent">
+                    <p className="text-[9px] uppercase tracking-[0.3em] text-accent mb-2 font-bold">{video.tagline}</p>
                     <h3 className="text-lg font-bold text-zinc-900 leading-tight">{video.title}</h3>
                  </div>
               </div>

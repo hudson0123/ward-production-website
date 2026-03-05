@@ -13,10 +13,14 @@
   --color-gray-800: #27272A;
   --color-gray-900: #18181B;
 
-  /* Accent - Warm Amber/Ochre */
-  --color-accent: #D97706;
-  --color-accent-hover: #B45309;
-  --color-accent-light: #FEF3C7;
+  /* Accent System - Controlled via siteConfig.ts */
+  --accent: #7D80DA;
+  --accent-hover: #136F63;
+  --accent-rgb: 125, 128, 218;
+
+  --secondary: #D97706;
+  --secondary-hover: #B45309;
+  --secondary-rgb: 217, 119, 6;
 
   /* Layout */
   --navbar-height: 72px;
@@ -35,6 +39,10 @@
   --color-foreground: var(--color-black);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-secondary-accent: var(--secondary);
+  --color-secondary-accent-hover: var(--secondary-hover);
 }
 
 * {
@@ -181,7 +189,7 @@ nav,
 /* Gradient Accent Line */
 .accent-line {
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
 /* Section Divider */
@@ -263,7 +271,7 @@ nav,
 
 /* Button Styles - Sharp Modern Look */
 .btn-primary {
-  background: #D97706;
+  background: var(--accent);
   color: #FFFFFF;
   padding: 12px 28px;
   border-radius: 4px;
@@ -277,9 +285,9 @@ nav,
 }
 
 .btn-primary:hover {
-  background: #B45309;
+  background: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);
 }
 
 /* Outline Button */
@@ -331,8 +339,8 @@ nav,
 
 .form-input:focus {
   outline: none;
-  border-color: #D97706;
-  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
 }
 
 /* Section Spacing */
@@ -379,7 +387,7 @@ nav,
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--color-accent);
+  background: var(--accent);
   transition: width var(--transition-normal);
 }
 
@@ -389,7 +397,7 @@ nav,
 
 /* Text gradient accent */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #1F501D 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #1F501D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
