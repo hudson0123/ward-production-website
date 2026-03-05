@@ -92,16 +92,16 @@ export const siteConfig = {
       {
         id: 1,
         src: "https://www.youtube.com/watch?v=diLqmjW2cqI",
-        title: "Modern Home Tour",
+        title: "Luxury Home Tour",
         tagline: "Drone | Cinematic Walkthrough",
         address: "",
       },
       {
         id: 2,
         src: "https://www.youtube.com/watch?v=Qk4FZ9Jl0j4",
-        title: "789 Ocean View Drive",
-        tagline: "Architectural Cinematography",
-        address: "Malibu, CA",
+        title: "Modern Home Tour",
+        tagline: "Architectural Videography",
+        address: "",
       },
       {
         id: 3,
