@@ -197,7 +197,7 @@ export const siteConfig = {
     description: "Have a project that requires a meticulous eye for detail? We are ready to bring it to life with precision and cinematic clarity.",
     socialLinks: [
       { name: "Instagram", url: "https://instagram.com/wardcreatives" },
-      { name: "Facebook", url: "https://facebook.com/wardcreatives" },
+      { name: "Facebook", url: "https://www.facebook.com/profile.php?id=61583053785101" },
       { name: "TikTok", url: "https://tiktok.com/@wardcreatives" },
     ],
     emailJS: {
