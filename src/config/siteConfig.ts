@@ -19,6 +19,16 @@ export interface ReelItem extends PortfolioItem {
   views: string;
 }
 
+export interface PackageItem {
+  name: string;
+  tagline: string;
+  description: string;
+  featured?: boolean;
+  mediaSrc: string;
+  mediaType: string;
+  aspectRatio?: 'horizontal' | 'vertical';
+}
+
 export const siteConfig = {
   global: {
     name: "Ward Creatives",
@@ -42,6 +52,7 @@ export const siteConfig = {
     titleSecondary: "Shot to be remembered.",
     description: "Strong ideas demand strong execution. Our work is built on precision, discipline, and clarity — every frame, intentional.",
     videoSrc: "/placeholder.mp4",
+    videoPoster: "/DSC00770-ok.jpg",
   },
   
   about: {
@@ -170,14 +181,15 @@ export const siteConfig = {
         mediaSrc: "/horizontal-images/DSC00517.JPG",
         mediaType: "image",
       },
-      {
-        name: "Social Media Reels",
-        tagline: "Show-stopping short-form video",
-        description: "A cinematic 30–60 second reel crafted to capture attention instantly. Designed for social media, marketing campaigns, and high-impact listing promotion. Includes professional editing, music, and pacing optimized for maximum viewer retention.",
-        mediaSrc: "/DSC01085.jpg",
-        mediaType: "image",
-      },
-    ],
+        {
+          name: "Social Media Reels",
+          tagline: "Show-stopping short-form video",
+          description: "A cinematic 30–60 second reel crafted to capture attention instantly. Designed for social media, marketing campaigns, and high-impact listing promotion. Includes professional editing, music, and pacing optimized for maximum viewer retention.",
+          mediaSrc: "/keegan.png",
+          mediaType: "image",
+          aspectRatio: "vertical",
+        },
+      ] as PackageItem[],
     addOns: [
       "Virtual Staging",
       "Lawn Replacement",

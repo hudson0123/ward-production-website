@@ -124,12 +124,12 @@ export default function Contact() {
                 name="message"
                 className="form-input resize-none" 
                 rows={4} 
-                placeholder="Describe the scope..."
+                placeholder="Tell us about your project..."
                 required 
               />
             </div>
             <div className="mt-8 text-center">
-              <p className="text-[10px] inline uppercase tracking-widest text-zinc-400 font-bold">
+              <p className="text-[10px] inline uppercase mb-2 tracking-widest text-zinc-400 font-bold">
                 Want to go ahead and book?
               </p>
               <Link href="/book" className="hover:underline text-[10px] ml-2 uppercase tracking-widest text-accent transition-colors font-bold">

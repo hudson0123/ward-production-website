@@ -95,6 +95,8 @@ export default function Home() {
           loop
           muted
           playsInline
+          webkit-playsinline="true"
+          poster={siteConfig.hero.videoPoster}
           onLoadedMetadata={() => {
             if (heroVideoRef.current) {
               heroVideoRef.current.muted = true;
@@ -299,9 +301,9 @@ export default function Home() {
               <Image
                 src={siteConfig.global.logo}
                 alt={siteConfig.global.logoAlt}
-                width={36}
+                width={48}
                 height={24}
-                className="w-9 h-6 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                className="w-15 h-6 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
               />
             </div>
           </div>

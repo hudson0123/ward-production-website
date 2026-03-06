@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { siteConfig } from "../config/siteConfig";
-
-interface Package {
-  name: string;
-  tagline: string;
-  description: string;
-  featured?: boolean;
-  mediaSrc: string;
-  mediaType: string;
-}
+import { siteConfig, PackageItem } from "../config/siteConfig";
 
 export default function Packages() {
   const { packages } = siteConfig;
@@ -33,78 +24,94 @@ export default function Packages() {
     return () => window.removeEventListener('resize', updateVisibleCards);
   }, []);
 
-  const nextPackage = () => {
+  const nextPackageItem = () => {
     setCurrentIndex((prev: number) => (prev + 1) % packages.list.length);
   };
 
-  const prevPackage = () => {
+  const prevPackageItem = () => {
     setCurrentIndex((prev: number) => (prev - 1 + packages.list.length) % packages.list.length);
   };
 
-  const renderPackage = (pkg: Package) => (
-    <div
-      className={`relative p-0 flex flex-col justify-between h-full transition-all duration-500 min-h-[420px] md:min-h-[480px] ${
-        pkg.featured
-          ? "bg-zinc-900 text-white border border-accent shadow-xl"
-          : "bg-white border border-zinc-200 shadow-sm"
-      }`}
-      style={{ borderRadius: '2px' }}
-    >
-      <div className="p-7">
-        {pkg.featured && (
-          <div 
-            className="absolute -top-3 left-8 bg-accent text-white text-[10px] font-bold px-4 py-1.5 uppercase tracking-widest z-20"
-            style={{ borderRadius: '1px' }}
+  const renderPackageItem = (pkg: PackageItem) => {
+    const isVertical = pkg.aspectRatio === 'vertical';
+    
+    return (
+      <div
+        className={`relative p-0 flex flex-col justify-between h-full transition-all duration-500 ${
+          pkg.featured
+            ? "bg-zinc-900 text-white border border-accent shadow-xl"
+            : "bg-white border border-zinc-200 shadow-sm"
+        }`}
+        style={{ borderRadius: '2px' }}
+      >
+        <div className="p-7">
+          {pkg.featured && (
+            <div 
+              className="absolute -top-3 left-8 bg-accent text-white text-[10px] font-bold px-4 py-1.5 uppercase tracking-widest z-20"
+              style={{ borderRadius: '1px' }}
+            >
+              Signature Selection
+            </div>
+          )}
+          <h3
+            className={`text-lg font-bold mb-1.5 ${
+              pkg.featured ? "text-white" : "text-zinc-900"
+            }`}
           >
-            Signature Selection
-          </div>
-        )}
-        <h3
-          className={`text-lg font-bold mb-1.5 ${
-            pkg.featured ? "text-white" : "text-zinc-900"
-          }`}
-        >
-          {pkg.name}
-        </h3>
-        <p
-          className={`text-[9px] font-bold uppercase tracking-[0.2em] mb-4 ${
-            pkg.featured ? "text-white" : "text-zinc-900"
-          }`}
-        >
-          {pkg.tagline}
-        </p>
-        <p
-          className={`text-[13px] leading-relaxed ${
-            pkg.featured ? "text-zinc-400 font-bold " : "text-zinc-500 font-normal"
-          }`}
-        >
-          {pkg.description}
-        </p>
+            {pkg.name}
+          </h3>
+          <p
+            className={`text-[9px] font-bold uppercase tracking-[0.2em] mb-4 ${
+              pkg.featured ? "text-white" : "text-zinc-900"
+            }`}
+          >
+            {pkg.tagline}
+          </p>
+          <p
+            className={`text-[13px] leading-relaxed ${
+              pkg.featured ? "text-zinc-400 font-bold " : "text-zinc-500 font-normal"
+            }`}
+          >
+            {pkg.description}
+          </p>
+        </div>
+        
+        <div className="mt-auto w-full aspect-[4/3] bg-zinc-50 relative group overflow-hidden" style={{ borderBottomLeftRadius: '2px', borderBottomRightRadius: '2px' }}>
+          <Link href="/book" className="block w-full h-full cursor-pointer">
+            {isVertical ? (
+              <div className="w-full h-full flex items-center justify-center p-4">
+                <div className="h-full aspect-[9/16] shadow-xl rounded-md overflow-hidden border border-zinc-200 bg-white">
+                  <img 
+                    src={pkg.mediaSrc} 
+                    alt={pkg.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+            ) : (
+              <img 
+                src={pkg.mediaSrc} 
+                alt={pkg.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            )}
+            
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+               <span className="text-white text-[10px] uppercase tracking-widest font-bold border-b border-white pb-1">
+                 Book Now
+               </span>
+            </div>
+          </Link>
+        </div>
       </div>
-      
-      <div className="mt-auto w-full aspect-[4/3] bg-zinc-100 relative group overflow-hidden" style={{ borderBottomLeftRadius: '2px', borderBottomRightRadius: '2px' }}>
-        <Link href="/book" className="block w-full h-full cursor-pointer">
-          <img 
-            src={pkg.mediaSrc} 
-            alt={pkg.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-             <span className="text-white text-[10px] uppercase tracking-widest font-bold border-b border-white pb-1">
-               Book Now
-             </span>
-          </div>
-        </Link>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="w-full md:px-12 relative group/section">
       {/* Navigation Arrows for Desktop */}
       <button 
-        onClick={prevPackage}
+        onClick={prevPackageItem}
         className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white border border-zinc-200 rounded-full shadow-lg items-center justify-center text-zinc-400 hover:text-zinc-900 hover:border-zinc-900 active:scale-95 transition-all opacity-100 cursor-pointer"
         aria-label="Previous page"
       >
@@ -114,7 +121,7 @@ export default function Packages() {
       </button>
 
       <button 
-        onClick={nextPackage}
+        onClick={nextPackageItem}
         className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white border border-zinc-200 rounded-full shadow-lg items-center justify-center text-zinc-400 hover:text-zinc-900 hover:border-zinc-900 active:scale-95 transition-all opacity-100 cursor-pointer"
         aria-label="Next page"
       >
@@ -131,14 +138,14 @@ export default function Packages() {
             transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` 
           }}
         >
-          {packages.list.map((pkg: Package, idx: number) => {
+          {packages.list.map((pkg: PackageItem, idx: number) => {
             return (
               <div 
                 key={idx} 
                 className="flex-shrink-0 px-3 md:px-4"
                 style={{ width: `${100 / visibleCards}%` }}
               >
-                {renderPackage(pkg)}
+                {renderPackageItem(pkg)}
               </div>
             );
           })}
@@ -150,7 +157,7 @@ export default function Packages() {
         {/* Mobile controls (hidden on desktop except indicators) */}
         <div className="flex md:hidden items-center justify-between w-full">
           <button 
-            onClick={prevPackage}
+            onClick={prevPackageItem}
             className="p-3 bg-white border border-zinc-200 rounded-full shadow-sm text-zinc-400 hover:text-zinc-900"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +179,7 @@ export default function Packages() {
           </div>
 
           <button 
-            onClick={nextPackage}
+            onClick={nextPackageItem}
             className="p-3 bg-white border border-zinc-200 rounded-full shadow-sm text-zinc-400 hover:text-zinc-900"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
