@@ -95,37 +95,9 @@ export default function Gallery() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {portfolio.films.map((film) => {
-              const videoId = getYouTubeId(film.src);
-              return (
-                <div key={film.id} className="group">
-                  <div className="aspect-video bg-zinc-900 relative overflow-hidden mb-6" style={{ borderRadius: '3px' }}>
-                    {videoId ? (
-                      <iframe
-                        src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
-                        className="absolute inset-0 w-full h-full"
-                        title={film.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <video 
-                        src={film.src} 
-                        className="w-full h-full object-cover" 
-                        controls 
-                        playsInline
-                      />
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-zinc-900 mb-1">{film.title}</h3>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold mb-2">{film.tagline}</p>
-                    <p className="text-sm text-zinc-500">{film.address}</p>
-                  </div>
-                </div>
-              );
-            })}
+            {portfolio.films.map((film) => (
+              <FilmCard key={film.id} film={film} />
+            ))}
           </div>
         </section>
 
@@ -164,6 +136,72 @@ export default function Gallery() {
         </footer>
 
       </main>
+    </div>
+  );
+}
+
+function FilmCard({ film }: { film: any }) {
+  const [isPaused, setIsPaused] = useState(false);
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const videoId = getYouTubeId(film.src);
+
+  const togglePlay = () => {
+    if (!iframeRef.current) return;
+    
+    const command = isPaused ? 'playVideo' : 'pauseVideo';
+    iframeRef.current.contentWindow?.postMessage(
+      JSON.stringify({ event: 'command', func: command, args: [] }),
+      '*'
+    );
+    setIsPaused(!isPaused);
+  };
+
+  return (
+    <div className="group">
+      <div 
+        className="aspect-video bg-zinc-900 relative overflow-hidden mb-6 cursor-pointer group/card" 
+        style={{ borderRadius: '3px' }}
+        onClick={togglePlay}
+      >
+        {videoId ? (
+          <iframe
+            ref={iframeRef}
+            src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&enablejsapi=1&autoplay=1&mute=1`}
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            title={film.title}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <video 
+            src={film.src} 
+            className="w-full h-full object-cover" 
+            controls 
+            playsInline
+          />
+        )}
+
+        {/* Play/Pause Indicator Overlay */}
+        <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 pointer-events-none z-10 ${isPaused ? 'bg-black/20 opacity-100' : 'opacity-0'}`}>
+          <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white scale-100 group-hover/card:scale-110 transition-transform">
+            {isPaused ? (
+              <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            ) : (
+              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              </svg>
+            )}
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 className="text-xl font-bold text-zinc-900 mb-1">{film.title}</h3>
+        <p className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold mb-2">{film.tagline}</p>
+        <p className="text-sm text-zinc-500">{film.address}</p>
+      </div>
     </div>
   );
 }

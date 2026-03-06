@@ -87,10 +87,10 @@ export default function Home() {
         id="hero"
         className="relative w-full h-screen flex items-end overflow-hidden"
       >
-        {/* Video Background */}
+        {/* Video Background - Desktop Only */}
         <video
           ref={heroVideoRef}
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none hidden md:block"
           autoPlay
           loop
           muted
@@ -107,6 +107,15 @@ export default function Home() {
         >
           <source src={siteConfig.hero.videoSrc} type="video/mp4" />
         </video>
+
+        {/* Static Image Background - Mobile Only */}
+        <div className="absolute inset-0 w-full h-full md:hidden">
+          <img 
+            src={siteConfig.hero.videoPoster}
+            alt="Real Estate Hero"
+            className="w-full h-full object-cover"
+          />
+        </div>
         
         {/* Cinematic Gradient Overlay */}
         <div 

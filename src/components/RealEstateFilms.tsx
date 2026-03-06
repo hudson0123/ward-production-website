@@ -14,10 +14,17 @@ const getYouTubeId = (url: string) => {
 function RealEstateFilms({ films }: { films: any[] }) {
   const [mounted, setMounted] = useState(false);
   const [currentFilm, setCurrentFilm] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Reset pause state when film changes
+  useEffect(() => {
+    setIsPaused(false);
+  }, [currentFilm]);
 
   if (!mounted) {
     return (
@@ -34,6 +41,17 @@ function RealEstateFilms({ films }: { films: any[] }) {
     setCurrentFilm((i) => (i === films.length - 1 ? 0 : i + 1));
   };
 
+  const togglePlay = () => {
+    if (!iframeRef.current) return;
+    
+    const command = isPaused ? 'playVideo' : 'pauseVideo';
+    iframeRef.current.contentWindow?.postMessage(
+      JSON.stringify({ event: 'command', func: command, args: [] }),
+      '*'
+    );
+    setIsPaused(!isPaused);
+  };
+
   const film = films[currentFilm];
   const videoId = getYouTubeId(film.src);
 
@@ -43,11 +61,15 @@ function RealEstateFilms({ films }: { films: any[] }) {
         {siteConfig.portfolio.filmsTitle}
       </p>
       <div className="relative group/container" style={{ borderRadius: "3px" }}>
-        <div className="aspect-video bg-zinc-900 relative overflow-hidden">
+        <div 
+          className="aspect-video bg-zinc-900 relative overflow-hidden cursor-pointer"
+          onClick={togglePlay}
+        >
           {videoId ? (
             <iframe
+              ref={iframeRef}
               key={videoId}
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0`}
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1`}
               className="absolute inset-0 w-full h-full pointer-events-none"
               title={film.title}
               frameBorder="0"
@@ -57,6 +79,21 @@ function RealEstateFilms({ films }: { films: any[] }) {
           ) : (
             <div className="flex items-center justify-center h-full text-zinc-500 text-xs">Video unavailable</div>
           )}
+
+          {/* Play/Pause Indicator Overlay */}
+          <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 pointer-events-none z-10 ${isPaused ? 'bg-black/20 opacity-100' : 'opacity-0'}`}>
+            <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white scale-100 group-hover/container:scale-110 transition-transform">
+              {isPaused ? (
+                <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              ) : (
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+              )}
+            </div>
+          </div>
 
           {/* Navigation Buttons Inside */}
           <button
