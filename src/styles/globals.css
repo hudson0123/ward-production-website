@@ -314,13 +314,24 @@ nav,
 
 
 /* Hide native video controls and play buttons (especially for mobile autoplay blocks) */
-video::-webkit-media-controls {
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button,
+video::-internal-media-controls-overlay-cast-button,
+video::-webkit-media-controls-overlay-play-button {
   display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
-video::-webkit-media-controls-start-playback-button {
+/* Specific fix for some mobile browsers that use different overlay selectors */
+video::--webkit-media-controls-play-button,
+video::--webkit-media-controls-start-playback-button {
   display: none !important;
-  -webkit-appearance: none;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

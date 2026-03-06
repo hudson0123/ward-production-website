@@ -96,6 +96,8 @@ export default function Home() {
           muted
           playsInline
           webkit-playsinline="true"
+          disableRemotePlayback
+          disablePictureInPicture
           poster={siteConfig.hero.videoPoster}
           onLoadedMetadata={() => {
             if (heroVideoRef.current) {
