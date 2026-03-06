@@ -128,7 +128,7 @@ export default function Home() {
 
 
         {/* Hero Content - Left-aligned editorial layout */}
-        <div className={`relative z-10 w-full max-w-7xl mx-auto px-6 pb-28 md:pb-32 transition-opacity duration-700 ${isHeroClear ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        <div className={`relative z-10 w-full max-w-7xl mx-auto px-6 pb-18 md:pb-28 transition-opacity duration-700 ${isHeroClear ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <p 
             className="text-[11px] uppercase tracking-[0.4em] text-white mb-5 font-semibold flex items-center gap-4 hero-stagger-1"
             style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}

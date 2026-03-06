@@ -52,7 +52,7 @@ export const siteConfig = {
     titleSecondary: "Shot to be remembered.",
     description: "Strong ideas demand strong execution. Our work is built on precision, discipline, and clarity — every frame, intentional.",
     videoSrc: "/placeholder.mp4",
-    videoPoster: "/DSC00770-ok.jpg",
+    videoPoster: "/DSC01085.jpg",
   },
   
   about: {

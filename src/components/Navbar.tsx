@@ -103,7 +103,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
 
           {/* Hamburger Menu Button */}
           <button
-            className={`md:hidden flex flex-col gap-1.5 p-2 ${
+            className={`md:hidden flex flex-col gap-1.5 p-2  ${
               isMenuOpen ? "hamburger-open" : ""
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
