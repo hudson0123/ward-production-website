@@ -130,10 +130,10 @@ export default function Home() {
         {/* Hero Content - Left-aligned editorial layout */}
         <div className={`relative z-10 w-full max-w-7xl mx-auto px-6 pb-28 md:pb-32 transition-opacity duration-700 ${isHeroClear ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <p 
-            className="text-[10px] uppercase tracking-[0.4em] text-white/70 mb-5 font-medium flex items-center gap-4 hero-stagger-1"
-            style={{ textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
+            className="text-[11px] uppercase tracking-[0.4em] text-white mb-5 font-semibold flex items-center gap-4 hero-stagger-1"
+            style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}
           >
-            <span className="w-8 h-px bg-white/40" />
+            <span className="w-10 h-px bg-white/60" />
             {siteConfig.hero.tagline}
           </p>
           <h1 
