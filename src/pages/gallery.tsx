@@ -116,7 +116,6 @@ export default function Gallery() {
                 </div>
                 <div className="mt-6 text-center">
                    <h4 className="text-sm font-bold text-zinc-900 mb-1">{reel.title}</h4>
-                   <p className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">{reel.views} Views</p>
                 </div>
               </div>
             ))}
